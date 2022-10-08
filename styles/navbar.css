@@ -29,10 +29,10 @@ nav .account { z-index: 1; }
 
 /**********Medium (md)**********/
 @media (max-width: 991.98px) {
-  .navbar.open { background-color: #222222; }
+  .navbar.open { background-color: var(--prize-text); }
   nav .logo { order: 1; }
   nav .nav-items { order: 2; }
-  nav .nav-items ul { position: absolute; top: 0; left: 0; right: 0; padding: 1rem 2rem 1.75rem 1.5rem; margin: 4rem 0 0 0; list-style: none; display: flex; gap: 1rem; align-items: flex-end; flex-direction: column; background-color: #222222; transition: 0s; transform: translateY(-100vh); z-index: 1; }
+  nav .nav-items ul { position: absolute; top: 0; left: 0; right: 0; padding: 1rem 2rem 1.75rem 1.5rem; margin: 4rem 0 0 0; list-style: none; display: flex; gap: 1rem; align-items: flex-end; flex-direction: column; background-color: var(--prize-text); transition: 0s; transform: translateY(-100vh); z-index: 1; }
   nav.open .nav-items ul { transform: translateY(0); }
   .BountyButton{display:none}
   .nav-item-bounties{display: initial;}
