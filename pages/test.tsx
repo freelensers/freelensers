@@ -1,5 +1,6 @@
 import { apolloClient } from './client/ApolloClient';
 import { gql } from '@apollo/client'
+import { signMessage } from './helpers/signMessage';
 
 const query = `query($request: ChallengeRequest!) {
   challenge(request: $request) {
@@ -18,4 +19,7 @@ export const queryExample = async () => {
     },
   })
   console.log('Lens example data: ', response.data.challenge.text)
+  const signature = await signMessage(response.data.challenge.text)
+  console.log('Signature: ', signature)
+
 }

@@ -1,10 +1,15 @@
 import { ethers } from "ethers";
+import { useEffect } from "react";
 
-const signMessage = async (message: string, signer: ethers.Signer) => {
-  const messageBytes = ethers.utils.toUtf8Bytes(message);
-  const messageDigest = ethers.utils.keccak256(messageBytes);
-  const signature = await signer.signMessage(messageDigest);
+useEffect(() => {
+  if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    // other stuff using provider here
+  }
+}, []);
+
+export const signMessage = async (message: string) => {
+  const signature = await signer.signMessage(message);
   return signature;
-}
-
-  
+};
