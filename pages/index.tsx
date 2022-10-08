@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 // import the function from test.tsx
-import { queryExample } from './test'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { apolloClient } from './client/ApolloClient';
@@ -14,13 +13,22 @@ const Home: NextPage = () => {
   const [provider, setProvider] = useState<ethers.providers.Web3Provider>()
   const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
   const [address, setAddress] = useState<string>()
+  const [signature, setSignature] = useState<string>()
 
-  const query = `query($request: ChallengeRequest!) {
+  const challengeQuery = `query($request: ChallengeRequest!) {
     challenge(request: $request) {
           text
       }
     }
   `  
+
+  const authenticateQuery = `mutation($request: SignedAuthChallenge!) {
+    authenticate(request: $request) {
+          accessToken
+          refreshToken
+      }
+    }
+  `
 
   useEffect(() => {
     if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
@@ -28,9 +36,6 @@ const Home: NextPage = () => {
       setProvider(provider)
       const signer = provider.getSigner()
       setSigner(signer)
-      signer.getAddress().then((address) => {
-        setAddress(address)
-      })
       // other stuff using provider here
     }
   }, []);
@@ -38,6 +43,9 @@ const Home: NextPage = () => {
   const connectWallet = async () => {
     try {
       await window.ethereum.request({ method: 'eth_requestAccounts' })
+      signer?.getAddress().then((address) => {
+        setAddress(address)
+      })
     } catch (error) {
       console.log(error)
     }
@@ -46,22 +54,42 @@ const Home: NextPage = () => {
   const signMessage = async (message: string) => {
     try {
       const signature = await signer?.signMessage(message)
-      console.log(signature)
+      return signature
     } catch (error) {
-      console.log(error)
+      return error
     }
   };
 
   const getMessage = async () => {
     const response = await apolloClient.query({
-      query: gql(query),
+      query: gql(challengeQuery),
       variables: {
         request: {
             address: address
         },
       },
     })
-    console.log('Lens example data: ', response.data.challenge.text)
+    console.log(response.data.challenge.text)
+    const signature = await signMessage(response.data.challenge.text)
+    console.log('Signature: ', signature)
+    setSignature(signature?.toString())
+  }
+
+  const authenticate = async () => {
+    try {
+      const response = await apolloClient.mutate({
+        mutation: gql(authenticateQuery),
+        variables: {
+          request: {
+              address: address,
+              signature: signature
+          },
+        },
+      })
+      console.log(response.data.authenticate.text)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -116,9 +144,9 @@ const Home: NextPage = () => {
           </a>
           <div>
             {/* Create button to call function from test.tsx */}
-            <button onClick={queryExample}>Query Example</button>
             <button onClick={connectWallet}>Connect Wallet</button>
             <button onClick={getMessage}>Get Message</button>
+            <button onClick={authenticate}>Authenticate</button>
           </div>
         </div>
       </main>
