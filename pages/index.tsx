@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { apolloClient } from './client/ApolloClient';
 import { gql } from '@apollo/client'
+import { piggyAbi, erc20Abi } from '../constants/abis'
 
 const Home: NextPage = () => {
 
@@ -14,6 +15,9 @@ const Home: NextPage = () => {
   const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
   const [address, setAddress] = useState<string>()
   const [signature, setSignature] = useState<string>()
+  const [ethAmount, setEthAmount] = useState<string>("0.001")
+  const [tokenAddress, setTokenAddress] = useState<string>("0x326C977E6efc84E512bB9C30f76E30c160eD06FB")
+  const [tokenAmount, setTokenAmount] = useState<string>("0.001")
 
   const challengeQuery = `query($request: ChallengeRequest!) {
     challenge(request: $request) {
@@ -86,7 +90,38 @@ const Home: NextPage = () => {
           },
         },
       })
-      console.log(response.data.authenticate.text)
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const depositEther = async () => {
+    try {
+      const contractAddress = '0xBA483fF4C1caB66808434582905eD730A88d6818'
+      const contract = new ethers.Contract(contractAddress, piggyAbi, signer)
+      const tx = await contract.depositEther({ value: ethers.utils.parseEther(ethAmount) })
+      await tx.wait()
+      console.log('Transaction successful')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const depositToken = async () => {
+    try {
+      const contractAddress = '0xBA483fF4C1caB66808434582905eD730A88d6818'
+      const contract = new ethers.Contract(contractAddress, piggyAbi, signer)
+      const tokenContract = new ethers.Contract(tokenAddress, erc20Abi, signer)
+      const allowance = await tokenContract.allowance(address, contractAddress)
+      const decimals = await tokenContract.decimals()
+      if (allowance < ethers.utils.parseUnits(tokenAmount, decimals)) {
+        const tx = await tokenContract.approve(contractAddress, ethers.constants.MaxUint256)
+        await tx.wait()
+      }
+      const tx = await contract.depositToken(tokenAddress, ethers.utils.parseUnits(tokenAmount, decimals))
+      await tx.wait()
+      console.log('Transaction successful')
     } catch (error) {
       console.log(error)
     }
@@ -147,6 +182,12 @@ const Home: NextPage = () => {
             <button onClick={connectWallet}>Connect Wallet</button>
             <button onClick={getMessage}>Get Message</button>
             <button onClick={authenticate}>Authenticate</button>
+            <input type="text" value={ethAmount} onChange={(e) => setEthAmount(e.target.value)} />
+            <button onClick={depositEther}>Deposit Ether</button>
+            <input type="text" value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value)} />
+            <input type="text" value={tokenAmount} onChange={(e) => setTokenAmount(e.target.value)} />      
+            <button onClick={depositToken}>Deposit Token</button>
+
           </div>
         </div>
       </main>
