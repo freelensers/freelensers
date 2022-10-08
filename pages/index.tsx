@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { apolloClient } from './client/ApolloClient';
 import { gql } from '@apollo/client'
+import { piggyAbi, erc20Abi } from '../constants/abis'
 
 // const router = useRouter()
 
@@ -24,6 +25,9 @@ const Home: NextPage = () => {
   const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
   const [address, setAddress] = useState<string>()
   const [signature, setSignature] = useState<string>()
+  const [ethAmount, setEthAmount] = useState<string>("0.001")
+  const [tokenAddress, setTokenAddress] = useState<string>("0x326C977E6efc84E512bB9C30f76E30c160eD06FB")
+  const [tokenAmount, setTokenAmount] = useState<string>("0.001")
 
   const challengeQuery = `query($request: ChallengeRequest!) {
     challenge(request: $request) {
@@ -38,6 +42,355 @@ const Home: NextPage = () => {
           refreshToken
       }
     }
+  `
+
+  const searchPostsQuery = `query Search {
+    search(request: {
+      query: "hello",
+      type: PUBLICATION,
+      limit: 10
+    }) {
+      ... on PublicationSearchResult {
+         __typename 
+        items {
+          __typename 
+          ... on Comment {
+            ...CommentFields
+          }
+          ... on Post {
+            ...PostFields
+          }
+        }
+        pageInfo {
+          prev
+          totalCount
+          next
+        }
+      }
+      ... on ProfileSearchResult {
+        __typename 
+        items {
+          ... on Profile {
+            ...ProfileFields
+          }
+        }
+        pageInfo {
+          prev
+          totalCount
+          next
+        }
+      }
+    }
+  }
+  
+  fragment MediaFields on Media {
+    url
+    mimeType
+  }
+  
+  fragment MirrorBaseFields on Mirror {
+    id
+    profile {
+      ...ProfileFields
+    }
+    stats {
+      ...PublicationStatsFields
+    }
+    metadata {
+      ...MetadataOutputFields
+    }
+    createdAt
+    collectModule {
+      ...CollectModuleFields
+    }
+    referenceModule {
+      ...ReferenceModuleFields
+    }
+    appId
+  }
+  
+  fragment ProfileFields on Profile {
+    profileId: id,
+    name
+    bio
+    attributes {
+       displayType
+       traitType
+       key
+       value
+    }
+    isFollowedByMe
+    isFollowing(who: null)
+    metadataUrl: metadata
+    isDefault
+    handle
+    picture {
+      ... on NftImage {
+        contractAddress
+        tokenId
+        uri
+        verified
+      }
+      ... on MediaSet {
+        original {
+          ...MediaFields
+        }
+      }
+    }
+    coverPicture {
+      ... on NftImage {
+        contractAddress
+        tokenId
+        uri
+        verified
+      }
+      ... on MediaSet {
+        original {
+          ...MediaFields
+        }
+      }
+    }
+    ownedBy
+    dispatcher {
+      address
+    }
+    stats {
+      totalFollowers
+      totalFollowing
+      totalPosts
+      totalComments
+      totalMirrors
+      totalPublications
+      totalCollects
+    }
+    followModule {
+      ...FollowModuleFields
+    }
+  }
+  
+  fragment PublicationStatsFields on PublicationStats { 
+    totalAmountOfMirrors
+    totalAmountOfCollects
+    totalAmountOfComments
+  }
+  
+  fragment MetadataOutputFields on MetadataOutput {
+    name
+    description
+    content
+    media {
+      original {
+        ...MediaFields
+      }
+    }
+    attributes {
+      displayType
+      traitType
+      value
+    }
+  }
+  
+  fragment Erc20Fields on Erc20 {
+    name
+    symbol
+    decimals
+    address
+  }
+  
+  fragment PostFields on Post {
+    id
+    profile {
+      ...ProfileFields
+    }
+    stats {
+      ...PublicationStatsFields
+    }
+    metadata {
+      ...MetadataOutputFields
+    }
+    createdAt
+    collectModule {
+      ...CollectModuleFields
+    }
+    referenceModule {
+      ...ReferenceModuleFields
+    }
+    appId
+    hidden
+    reaction(request: null)
+    mirrors(by: null)
+    hasCollectedByMe
+  }
+  
+  fragment CommentBaseFields on Comment {
+    id
+    profile {
+      ...ProfileFields
+    }
+    stats {
+      ...PublicationStatsFields
+    }
+    metadata {
+      ...MetadataOutputFields
+    }
+    createdAt
+    collectModule {
+      ...CollectModuleFields
+    }
+    referenceModule {
+      ...ReferenceModuleFields
+    }
+    appId
+    hidden
+    reaction(request: null)
+    mirrors(by: null)
+    hasCollectedByMe
+  }
+  
+  fragment CommentFields on Comment {
+    ...CommentBaseFields
+    mainPost {
+      ... on Post {
+        ...PostFields
+      }
+      ... on Mirror {
+        ...MirrorBaseFields
+        mirrorOf {
+          ... on Post {
+             ...PostFields          
+          }
+          ... on Comment {
+             ...CommentMirrorOfFields        
+          }
+        }
+      }
+    }
+  }
+  
+  fragment CommentMirrorOfFields on Comment {
+    ...CommentBaseFields
+    mainPost {
+      ... on Post {
+        ...PostFields
+      }
+      ... on Mirror {
+         ...MirrorBaseFields
+      }
+    }
+  }
+  
+  fragment FollowModuleFields on FollowModule {
+    ... on FeeFollowModuleSettings {
+      type
+      amount {
+        asset {
+          name
+          symbol
+          decimals
+          address
+        }
+        value
+      }
+      recipient
+    }
+    ... on ProfileFollowModuleSettings {
+      type
+      contractAddress
+    }
+    ... on RevertFollowModuleSettings {
+      type
+      contractAddress
+    }
+    ... on UnknownFollowModuleSettings {
+      type
+      contractAddress
+      followModuleReturnData
+    }
+  }
+  
+  fragment CollectModuleFields on CollectModule {
+    __typename
+    ... on FreeCollectModuleSettings {
+      type
+      followerOnly
+      contractAddress
+    }
+    ... on FeeCollectModuleSettings {
+      type
+      amount {
+        asset {
+          ...Erc20Fields
+        }
+        value
+      }
+      recipient
+      referralFee
+    }
+    ... on LimitedFeeCollectModuleSettings {
+      type
+      collectLimit
+      amount {
+        asset {
+          ...Erc20Fields
+        }
+        value
+      }
+      recipient
+      referralFee
+    }
+    ... on LimitedTimedFeeCollectModuleSettings {
+      type
+      collectLimit
+      amount {
+        asset {
+          ...Erc20Fields
+        }
+        value
+      }
+      recipient
+      referralFee
+      endTimestamp
+    }
+    ... on RevertCollectModuleSettings {
+      type
+    }
+    ... on TimedFeeCollectModuleSettings {
+      type
+      amount {
+        asset {
+          ...Erc20Fields
+        }
+        value
+      }
+      recipient
+      referralFee
+      endTimestamp
+    }
+    ... on UnknownCollectModuleSettings {
+      type
+      contractAddress
+      collectModuleReturnData
+    }
+  }
+  
+  fragment ReferenceModuleFields on ReferenceModule {
+    ... on FollowOnlyReferenceModuleSettings {
+      type
+      contractAddress
+    }
+    ... on UnknownReferenceModuleSettings {
+      type
+      contractAddress
+      referenceModuleReturnData
+    }
+    ... on DegreesOfSeparationReferenceModuleSettings {
+      type
+      contractAddress
+      commentsRestricted
+      mirrorsRestricted
+      degreesOfSeparation
+    }
+  }
   `
 
   useEffect(() => {
@@ -85,6 +438,14 @@ const Home: NextPage = () => {
     setSignature(signature?.toString())
   }
 
+  const getQueryPosts = async () => {
+    const response = await apolloClient.query({
+      query: gql(searchPostsQuery),
+    })
+    console.log(response.data)
+    const data = response.data;
+  }
+
   const authenticate = async () => {
     try {
       const response = await apolloClient.mutate({
@@ -96,11 +457,60 @@ const Home: NextPage = () => {
           },
         },
       })
-      console.log(response.data.authenticate.text)
+      console.log(response)
     } catch (error) {
       console.log(error)
     }
   }
+
+  const depositEther = async () => {
+    try {
+      const contractAddress = '0xBA483fF4C1caB66808434582905eD730A88d6818'
+      const contract = new ethers.Contract(contractAddress, piggyAbi, signer)
+      const tx = await contract.depositEther({ value: ethers.utils.parseEther(ethAmount) })
+      await tx.wait()
+      console.log('Transaction successful')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const depositToken = async () => {
+    try {
+      const contractAddress = '0xBA483fF4C1caB66808434582905eD730A88d6818'
+      const contract = new ethers.Contract(contractAddress, piggyAbi, signer)
+      const tokenContract = new ethers.Contract(tokenAddress, erc20Abi, signer)
+      const allowance = await tokenContract.allowance(address, contractAddress)
+      const decimals = await tokenContract.decimals()
+      if (allowance < ethers.utils.parseUnits(tokenAmount, decimals)) {
+        const tx = await tokenContract.approve(contractAddress, ethers.constants.MaxUint256)
+        await tx.wait()
+      }
+      const tx = await contract.depositToken(tokenAddress, ethers.utils.parseUnits(tokenAmount, decimals))
+      await tx.wait()
+      console.log('Transaction successful')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const [clientWindowHeight, setClientWindowHeight] = useState("");
+
+  const handleScroll = () => {
+    setClientWindowHeight(window.scrollY);
+  };
+
+  useEffect(() => {
+    var nav = document.getElementsByTagName("nav")[0];
+    if (window.scrollY >= 100) {
+      nav.classList.add("scroll");
+    } else {
+      nav.classList.remove("scroll");
+    }
+    window.addEventListener("scroll", handleScroll); 
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
 
   return (
     <div>
@@ -109,27 +519,36 @@ const Home: NextPage = () => {
         <meta name="description" content="Generated by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Navbar />
       <main>
+        <Navbar />
         <Feed />
-        <div>
-          {/* Create button to call function from test.tsx */}
-          <button onClick={connectWallet}>Connect Wallet</button>
-          <button onClick={getMessage}>Get Message</button>
-          <button onClick={authenticate}>Authenticate</button>
-         </div>
+          <div>
+            {/* Create button to call function from test.tsx */}
+            <button onClick={connectWallet}>Connect Wallet</button>
+            <button onClick={getMessage}>Get Message</button>
+            <button onClick={authenticate}>Authenticate</button>
+            <input type="text" value={ethAmount} onChange={(e) => setEthAmount(e.target.value)} />
+            <button onClick={depositEther}>Deposit Ether</button>
+            <input type="text" value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value)} />
+            <input type="text" value={tokenAmount} onChange={(e) => setTokenAmount(e.target.value)} />      
+            <button onClick={depositToken}>Deposit Token</button>
+
+          </div>
+      </main>
       <footer>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{''}
           <span>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
+        <button onClick={getQueryPosts}></button>
+        {/* button to call getQueryPosts function */}
+
       </footer>
     </div>
   )

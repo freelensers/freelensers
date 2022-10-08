@@ -21,9 +21,10 @@ const Navbar = ()=>{
     }
 
     return(
-        <nav className="navbar">
+        <nav className="navbar scroll">
             <Link href="/landing">
-            <a className="navbar-brand">Lentsy</a></Link>
+                <a className="navbar-brand">Lentsy</a>
+            </Link>
             <div className="nav-items">
                 <ul>
                     <li>
@@ -40,7 +41,7 @@ const Navbar = ()=>{
             <div className="nav-items">
                 <button className="BountyButton"> Create bounty</button>
                 <div className="account">
-                    <button className="ConnectButton" onClick={async ()=> {await enableWeb3()}}>Connect</button>
+                    <button className="ConnectButton">Connect</button>
                 </div>
                 <a href="javascript:;" id="nav-toggler" onClick={nav}>
                     <div className="bar1"></div>

@@ -1,9 +1,5 @@
-:root {
-  --top-gap: 4rem;
-}
-
 main { background: url(../public/assets/img/main-bg.png); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; min-height: 100vh; }
-main section { min-height: 100vh; padding: var(--top-gap) 0; }
+main section { min-height: 100vh; padding: 2rem 0; }
 main section.feed-container { color: var(--white); }
 main section.feed-container h2 {  }
 main section.feed-container .feed-row { display: flex; flex-direction: row; flex-wrap: nowrap; align-items: stretch; align-content: stretch; justify-content: space-evenly; height: 100%; position: relative; }
@@ -15,7 +11,7 @@ main section.feed-container .column.left-col .header h1.title { font-size: 2.2re
 
 main section.feed-container .column.right-col { width: 35%; }
 main section.feed-container .column.right-col .content { height: 100%; }
-main section.feed-container .column.right-col .cards { height: 85vh; position: sticky; top: var(--top-gap); }
+main section.feed-container .column.right-col .cards { height: 85vh; position: sticky; top: 5rem; }
 main section.feed-container .column.right-col .content .header { padding-top: 1.5rem; padding-bottom: .75rem; border-bottom: 1px solid var(--stroke); }
 
 main section.feed-container .column .content {  }
@@ -42,7 +38,7 @@ main section.feed-container .column .content .middle p.text a.link { color: var(
 
 main section.feed-container .column .content .bottom { padding-top: 1rem; padding-bottom: 1.25rem; }
 main section.feed-container .column .content .bottom a.text { display: block; font-size: 1rem; font-weight: 400; color: var(--main-green); line-height: 1.4; margin-bottom: 0; text-align: right; text-decoration: none; }
-main section.feed-container .column .content .bottom a.icon img { height: .9rem; width: auto; filter: var(--main-green-filter); margin-right: 2rem; vertical-align: baseline; }
+main section.feed-container .column .content .bottom a.icon img { display: none; height: .9rem; width: auto; filter: var(--main-green-filter); margin-right: 2rem; vertical-align: baseline; }
 main section.feed-container .column .content .bottom a.text.icon img { margin-right: .35rem; }
 
 
