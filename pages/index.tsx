@@ -4,8 +4,66 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 // import the function from test.tsx
 import { queryExample } from './test'
+import { useEffect, useState } from 'react'
+import { ethers } from 'ethers'
+import { apolloClient } from './client/ApolloClient';
+import { gql } from '@apollo/client'
 
 const Home: NextPage = () => {
+
+  const [provider, setProvider] = useState<ethers.providers.Web3Provider>()
+  const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
+  const [address, setAddress] = useState<string>()
+
+  const query = `query($request: ChallengeRequest!) {
+    challenge(request: $request) {
+          text
+      }
+    }
+  `  
+
+  useEffect(() => {
+    if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      setProvider(provider)
+      const signer = provider.getSigner()
+      setSigner(signer)
+      signer.getAddress().then((address) => {
+        setAddress(address)
+      })
+      // other stuff using provider here
+    }
+  }, []);
+
+  const connectWallet = async () => {
+    try {
+      await window.ethereum.request({ method: 'eth_requestAccounts' })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const signMessage = async (message: string) => {
+    try {
+      const signature = await signer?.signMessage(message)
+      console.log(signature)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  const getMessage = async () => {
+    const response = await apolloClient.query({
+      query: gql(query),
+      variables: {
+        request: {
+            address: address
+        },
+      },
+    })
+    console.log('Lens example data: ', response.data.challenge.text)
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -59,6 +117,8 @@ const Home: NextPage = () => {
           <div>
             {/* Create button to call function from test.tsx */}
             <button onClick={queryExample}>Query Example</button>
+            <button onClick={connectWallet}>Connect Wallet</button>
+            <button onClick={getMessage}>Get Message</button>
           </div>
         </div>
       </main>
