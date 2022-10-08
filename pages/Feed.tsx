@@ -4,9 +4,22 @@ import Image from 'next/image'
 import dashboardcss from '../styles/dashboard.css'
 
 const Feed: NextPage = () => {
+
+	const fAccordion = () => {
+		var toggler = document.getElementById("Active-Bounties-toggler");
+    	var elem = document.getElementById("Active-Bounties-content");
+    	if (elem.classList.contains("show")) {
+    		toggler.setAttribute("data-show", "false");
+    		elem.classList.remove("show");
+    	} else {
+    		toggler.setAttribute("data-show", "true");
+    		elem.classList.add("show");
+    	}
+  	};
+
 	return (
-		<section className="container feed-container">
-			<div className="row feed-row">
+		<section className="container dashboard-container feed-container">
+			<div className="row dashboard-row">
 				<div className="column left-col">
 					<div className="header">
 						<h1 className="title">Feed</h1>
@@ -332,11 +345,11 @@ const Feed: NextPage = () => {
 				<div className="column right-col">
 					<div className="content">
 						<div className="cards w-posts">
-							<div className="container card-container">
+							<div className="container card-container accordion">
 								<div className="header row">
-									<h1 className="title">Active bounties</h1>
+									<h1 id="Active-Bounties-toggler" className="title" onClick={fAccordion} data-show="false">Active bounties<img src="assets/icons/arrow_down_icon.svg" className="icon" alt="Chevron icon" /></h1>
 								</div>
-								<div className="middle row posts">
+								<div id="Active-Bounties-content" className="middle row posts collapse">
 									<div className="post">
 										<div className="top row">
 											<div className="col-8">
