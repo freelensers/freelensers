@@ -17,5 +17,5 @@ export const queryExample = async () => {
       },
     },
   })
-  console.log('Lens example data: ', response)
+  console.log('Lens example data: ', response.data.challenge.text)
 }
