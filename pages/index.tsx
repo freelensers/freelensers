@@ -2,6 +2,8 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+// import the function from test.tsx
+import { queryExample } from './test'
 
 const Home: NextPage = () => {
   return (
@@ -49,7 +51,14 @@ const Home: NextPage = () => {
             <p>
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
+            
+          
+
           </a>
+          <div>
+            {/* Create button to call function from test.tsx */}
+            <button onClick={queryExample}>Query Example</button>
+          </div>
         </div>
       </main>
 
