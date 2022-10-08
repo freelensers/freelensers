@@ -108,7 +108,13 @@ const Home: NextPage = () => {
     setClientWindowHeight(window.scrollY);
   };
 
+  var nav = document.getElementsByTagName("nav")[0];
   useEffect(() => {
+    if (window.scrollY >= 100) {
+      nav.classList.add("scroll");
+    } else {
+      nav.classList.remove("scroll");
+    }
     window.addEventListener("scroll", handleScroll); 
     return () => window.removeEventListener("scroll", handleScroll);
   });
