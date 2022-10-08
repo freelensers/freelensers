@@ -4,7 +4,7 @@ a { color: inherit; text-decoration: none; }
 
 * { box-sizing: border-box; }
 
-::root {
+:root {
   --main-bg: #222222;
   --stroke: #4F4F4F;
   --white: #ffffff;
