@@ -2,8 +2,8 @@
 .BountyButton {border: none; color: #222222; background-color: #FFFFFF; border-radius: 100px; padding: 0.5rem 0.9rem;}
 .nav-item-bounties{display: none;}
 /** Navbar **/
-nav.navbar { background: transparent; color: #FFFFFF; font-size: var(--ts-nav); display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 0.8rem 3.5rem; position: sticky; top: 0; left: 0; right: 0; border-bottom:1px solid #4F4F4F; z-index: 2; transition: 0.5s; }
-nav.navbar.scroll { background: var(--grey-bg-forms); }
+nav.navbar { background: transparent; color: #FFFFFF; font-size: var(--ts-nav); display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 0.8rem 3.5rem; position: sticky; top: 0; left: 0; right: 0; border-bottom:1px solid #4F4F4F; z-index: 2; transition: 0.5s; transition-delay: 0.1s; }
+nav.navbar.scroll { background: var(--prize-text); }
 nav .navbar-brand{color: #FFFFFF}
 nav .navbar-brand:hover{color: #67B273}
 nav .nav-items { display: flex; justify-content: flex-start; align-items: center; align-content: center; flex-wrap: wrap; gap: 3rem; flex-direction: row; }

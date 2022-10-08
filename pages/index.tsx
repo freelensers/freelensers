@@ -440,6 +440,24 @@ const Home: NextPage = () => {
     }
   }
 
+  const [clientWindowHeight, setClientWindowHeight] = useState("");
+
+  const handleScroll = () => {
+    setClientWindowHeight(window.scrollY);
+  };
+
+  useEffect(() => {
+    var nav = document.getElementsByTagName("nav")[0];
+    if (window.scrollY >= 100) {
+      nav.classList.add("scroll");
+    } else {
+      nav.classList.remove("scroll");
+    }
+    window.addEventListener("scroll", handleScroll); 
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
+
   return (
     <div className={styles.container}>
       <Head>
