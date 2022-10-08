@@ -38,7 +38,7 @@ main section.feed-container .column .content .middle p.text a.link { color: var(
 
 main section.feed-container .column .content .bottom { padding-top: 1rem; padding-bottom: 1.25rem; }
 main section.feed-container .column .content .bottom a.text { display: block; font-size: 1rem; font-weight: 400; color: var(--main-green); line-height: 1.4; margin-bottom: 0; text-align: right; text-decoration: none; }
-main section.feed-container .column .content .bottom a.icon img { height: .9rem; width: auto; filter: var(--main-green-filter); margin-right: 2rem; vertical-align: baseline; }
+main section.feed-container .column .content .bottom a.icon img { display: none; height: .9rem; width: auto; filter: var(--main-green-filter); margin-right: 2rem; vertical-align: baseline; }
 main section.feed-container .column .content .bottom a.text.icon img { margin-right: .35rem; }
 
 
