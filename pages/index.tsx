@@ -46,7 +46,7 @@ const Home: NextPage = () => {
 
   const searchPostsQuery = `query Search {
     search(request: {
-      query: "freelensers",
+      query: "hello",
       type: PUBLICATION,
       limit: 10
     }) {
@@ -438,6 +438,14 @@ const Home: NextPage = () => {
     setSignature(signature?.toString())
   }
 
+  const getQueryPosts = async () => {
+    const response = await apolloClient.query({
+      query: gql(searchPostsQuery),
+    })
+    console.log(response.data)
+    const data = response.data;
+  }
+
   const authenticate = async () => {
     try {
       const response = await apolloClient.mutate({
@@ -538,6 +546,9 @@ const Home: NextPage = () => {
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
+        <button onClick={getQueryPosts}></button>
+        {/* button to call getQueryPosts function */}
+
       </footer>
     </div>
   )

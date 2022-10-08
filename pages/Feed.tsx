@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import dashboardcss from '../styles/dashboard.css'
 
+
 const Feed: NextPage = () => {
 	return (
 		<section className="container feed-container">
@@ -10,8 +11,10 @@ const Feed: NextPage = () => {
 				<div className="column left-col">
 					<div className="header">
 						<h1 className="title">Feed</h1>
+						
 					</div>
 					<div className="content">
+						
 						<div className="cards">
 							<div className="container card-container">
 								<div className="top row">
