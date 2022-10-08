@@ -1,5 +1,5 @@
 :root {
-  --top-gap: 4rem;
+  --top-gap: 5rem;
 }
 
 main { background: url(../public/assets/img/main-bg.png); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; min-height: 100vh; }

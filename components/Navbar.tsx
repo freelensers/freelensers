@@ -21,9 +21,10 @@ const Navbar = ()=>{
     }
 
     return(
-        <nav className="navbar">
+        <nav className="navbar scroll">
             <Link href="/landing">
-            <a className="navbar-brand">Lentsy</a></Link>
+                <a className="navbar-brand">Lentsy</a>
+            </Link>
             <div className="nav-items">
                 <ul>
                     <li>
