@@ -4,6 +4,29 @@ a { color: inherit; text-decoration: none; }
 
 * { box-sizing: border-box; }
 
+::root {
+  --main-bg: #222222;
+  --stroke: #4F4F4F;
+  --white: #ffffff;
+  --main-green: #67B273;
+  --prize-bg: #253528;
+  --prize-text: #191919;
+  --grey-text: #7C7C7C;
+  --grey-text-forms: #797979;
+  --grey-bg-forms: #292929;
+
+  --main-bg-filter: invert(7%) sepia(9%) saturate(45%) hue-rotate(314deg) brightness(103%) contrast(86%);
+  --stroke-filter: invert(28%) sepia(0%) saturate(201%) hue-rotate(217deg) brightness(97%) contrast(82%);
+  --white-filter: invert(100%) sepia(6%) saturate(0%) hue-rotate(101deg) brightness(107%) contrast(110%);
+  --main-green-filter: invert(66%) sepia(21%) saturate(762%) hue-rotate(78deg) brightness(91%) contrast(89%);
+  --prize-bg-filter: invert(17%) sepia(20%) saturate(634%) hue-rotate(80deg) brightness(95%) contrast(93%);
+  --prize-text-filter: invert(3%) sepia(8%) saturate(25%) hue-rotate(314deg) brightness(96%) contrast(85%);
+  --grey-text-filter: invert(57%) sepia(0%) saturate(0%) hue-rotate(233deg) brightness(85%) contrast(93%);
+  --grey-text-forms-filter: invert(47%) sepia(0%) saturate(3%) hue-rotate(34deg) brightness(100%) contrast(87%);
+  --grey-bg-forms-filter: invert(11%) sepia(16%) saturate(6%) hue-rotate(314deg) brightness(93%) contrast(87%);
+
+}
+
 
 
 /**********Large (lg)**********/
