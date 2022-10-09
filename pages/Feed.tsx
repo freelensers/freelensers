@@ -20,7 +20,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 // import the function from test.tsx
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { apolloClient } from './client/ApolloClient';
+import { apolloClient } from '../components/ApolloClient';
 import { gql } from '@apollo/client'
 import { piggyAbi, erc20Abi } from '../constants/abis'
 

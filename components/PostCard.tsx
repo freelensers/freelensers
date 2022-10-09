@@ -2,12 +2,9 @@ const PostCard =({Post} : {Post: any}) => {
     //tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
 
     var pimage = Post.profile.picture.original.url;
-    console.log(pimage);
+    // console.log(pimage);
     pimage = pimage.replace("ipfs://", "https://ipfs.io/ipfs/");
     
-    
-
-
     return(
         <div className="cards">
         <div className="container card-container">

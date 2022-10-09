@@ -27,6 +27,7 @@ export const DataContextProvider = ({ children }: Props) => {
 
   function openCreateModal() {
     setCreateModalIsOpen(true);
+    console.log('open');
     document.getElementsByTagName("body")[0].classList.add("popup-open");
   }
 

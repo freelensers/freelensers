@@ -8,10 +8,15 @@ import { useEffect, useState } from "react";
 import { Web3Auth } from "@web3auth/web3auth";
 import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from "@web3auth/base";
 import RPC from "../pages/Web3RPC";
+import PopUp from '../components/PopUp_Create'
+
 
 const clientId = "BDG5gmJwcwIaauNIQXvp403mBSVCF2Hw4jr5YYpZ7dbcAn5cQlo3z58cOzJRCN8BYxwaB4RDJOeKnpfluuXEqOY";
 
 const Navbar = ()=>{
+
+  const { createModalIsOpen } = useDataContext()
+
 
     const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
     const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(null);
@@ -193,6 +198,7 @@ const Navbar = ()=>{
                   <div className="bar3"></div>
               </a>
             </div>
+            {createModalIsOpen && <PopUp />}
         </nav>
     )
 }

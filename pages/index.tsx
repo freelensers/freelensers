@@ -7,7 +7,6 @@ import Navbar from '../components/Navbar'
 import Feed from './Feed'
 import Bounty from './Bounty'
 import Landing from './landing'
-import PopUp from '../components/PopUp_Create'
 import ViewBounties from './View_Bounties'
 
 import globals from '../styles/globals.css'
@@ -20,12 +19,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 // import the function from test.tsx
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { apolloClient } from './client/ApolloClient';
+import { apolloClient } from '../components/ApolloClient';
 import { gql } from '@apollo/client'
 import { piggyAbi, erc20Abi } from '../constants/abis'
-
-import { useDataContext } from '../context/DataContext'
-
 
 
 // const router = useRouter()
@@ -391,7 +387,6 @@ export async function getStaticProps(){
 
 const Home: NextPage = ({post} : any) => {
 
-  const { createModalIsOpen } = useDataContext()
 
   const [posts, setdata] = useState([post]);
     console.log(post);
@@ -554,8 +549,6 @@ const Home: NextPage = ({post} : any) => {
         {/*<Navbar />
         <ViewBounties />*/}
         {/*<Bounty />*/}
-
-        {createModalIsOpen && <PopUp />}
         {/*<Feed />*/}
         <Landing />
           <div>
