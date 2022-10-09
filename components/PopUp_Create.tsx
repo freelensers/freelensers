@@ -1,13 +1,17 @@
 import type { NextPage } from 'next'
-
+import { useDataContext } from '../context/DataContext'
 import Image from 'next/image'
 import dashboardcss from '../styles/dashboard.css'
+import Modal from 'react-modal'
 
 const PopUp = () => {
+
+	const { createModalIsOpen, closeCreateModal  } = useDataContext()
+	
 	return (
 		<div className="darken">
 			<section className="popup">
-				{/*<button className="close"><img src="./icon/close.svg" alt="Close button" /></button>*/}
+				<button className="close" onClick={closeCreateModal}>X</button>
 				<div className="container popup-container">
 					<div className="content popup-content">
 						<h1 className="title">Create your bounty</h1>
@@ -22,7 +26,6 @@ const PopUp = () => {
 								<div className="form row">
 									<div className="form-col col-12">
 										<label for="prize" className="form-label">Prize amount</label>
-
 										<div class="input-group">
 											<input id="prize" type="number" className="form-control" placeholder="1000" required />
 											<select class="btn dropdown-toggle" type="button">
@@ -31,28 +34,27 @@ const PopUp = () => {
 											</select>
 										</div>
 									</div>
-								</div>
-								<div className="form row">
-									<div className="form-col col-12">
-										<label for="date" className="form-label">Live until</label>
-										<input id="date" className="form-control" type="date" required />
+									<div className="form row">
+										<div className="form-col col-12">
+											<label for="date" className="form-label">Live until</label>
+											<input id="date" className="form-control" type="date" required />
+										</div>
+									</div>
+									<div className="form row">
+										<div className="form-col col-12">
+											<label for="applicants" className="form-label">Number of applicants</label>
+											<input id="applicants" className="form-control" type="number" placeholder="3" required />
+										</div>
+									</div>
+									<div className="form row">
+										<button type="submit" className="submit-btn btn-type-2">Confirm</button>
 									</div>
 								</div>
-								<div className="form row">
-									<div className="form-col col-12">
-										<label for="applicants" className="form-label">Number of applicants</label>
-										<input id="applicants" className="form-control" type="number" placeholder="3" required />
-									</div>
-								</div>
-								<div className="form row">
-									<button type="submit" className="submit-btn btn-type-2">Confirm</button>
-								</div>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
-				</div>
-			</section>
-		</div>
+				</section>
+			</div>
 	)
 }
 

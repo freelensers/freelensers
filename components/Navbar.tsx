@@ -1,8 +1,11 @@
 // import {useMoralis} from "react-moralis"
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { useDataContext } from '../context/DataContext'
 
 const Navbar = ()=>{
+
+    const { openCreateModal } = useDataContext()
 
     const router = useRouter()
 
@@ -39,7 +42,7 @@ const Navbar = ()=>{
                 </ul>
             </div>
             <div className="nav-items">
-                <button className="BountyButton"> Create bounty</button>
+                <button className="BountyButton" onClick={openCreateModal}>Create Bounty</button>
                 <div className="account">
                     <button className="ConnectButton">Connect</button>
                 </div>

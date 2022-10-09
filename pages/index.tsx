@@ -23,10 +23,12 @@ import { apolloClient } from './client/ApolloClient';
 import { gql } from '@apollo/client'
 import { piggyAbi, erc20Abi } from '../constants/abis'
 
+import { useDataContext } from '../context/DataContext'
+
 // const router = useRouter()
 const searchPostsQuery = `query Search {
   search(request: {
-    query: "hello",
+    query: "Aavegotchi",
     type: PUBLICATION,
     limit: 10
   }) {
@@ -386,6 +388,8 @@ export async function getStaticProps(){
 
 const Home: NextPage = ({post}) => {
 
+  const { createModalIsOpen } = useDataContext()
+
   const [posts, setdata] = useState([post]);
     console.log(post);
 
@@ -546,9 +550,7 @@ const Home: NextPage = ({post}) => {
       <main>
         <Navbar />
         <Bounty />
-
-        <PopUp />
-
+        {createModalIsOpen && <PopUp />}
         {/*<Feed />*/}
         {/*<Landing />*/}
           <div>
