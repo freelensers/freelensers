@@ -8,6 +8,7 @@ import Feed from './Feed.tsx'
 import Bounty from './Bounty.tsx'
 import Landing from './Landing.tsx'
 import PopUp from '../components/PopUp_Create.tsx'
+import ViewBounties from './View_Bounties.tsx'
 
 import globals from '../styles/globals.css'
 import dashboardcss from '../styles/dashboard.css'
@@ -549,8 +550,10 @@ const Home: NextPage = ({post}) => {
       </Head>
       <main>
         <Navbar />
-        <Bounty />
-        {createModalIsOpen && <PopUp />}
+        <ViewBounties />
+        {/*<Bounty />*/}
+
+        {/*{createModalIsOpen && <PopUp />}*/}
         {/*<Feed />*/}
         {/*<Landing />*/}
           <div>
