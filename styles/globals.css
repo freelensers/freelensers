@@ -23,7 +23,7 @@
 
 html, body { padding: 0; margin: 0; font-family: "Euclid Circular", sans-serif; }
 
-body.popup-open {  }
+body.popup-open { overflow-y: hidden; }
 
 a { color: inherit; text-decoration: none; }
 
