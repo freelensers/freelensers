@@ -24,6 +24,9 @@ const PopUp = () => {
 					owner: "0xbC91222C7DB724F9aA99eFf7b493Ec37FF241341"
 				})
 			}).then(res => () => (console.log(res)))
+			.then(() => {
+				closeCreateModal()
+			})
 
 		} catch (error) {
 			console.log(error)

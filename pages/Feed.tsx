@@ -571,6 +571,31 @@ const Feed: NextPage = ({post , bounties} : any) => {
 						
 					</div>
 					<div className="content">
+          <div className="cards">
+            <div className="container card-container">
+                <div className="top row">
+                    <div className="col f-col">
+                        <img src="https://ik.imagekit.io/lensterimg/tr:n-avatar,tr:di-placeholder.webp/https://lens.infura-ipfs.io/ipfs/bafkreid5ycpowwzkkbaqnga355xb3ywpbrgfbiddux2j7ggyqxyilypqdu" className="pp" alt="PP" />
+                    </div>
+                    <div className="col s-col">
+                        <h1 className="name">Iñigo </h1>
+                        <h2 className="username">@inigo.lens</h2>
+                    </div>
+                    <div className="col t-col">
+                        <p className="timestamp">2022-10-09T03:41:53.0002</p>
+                    </div>
+                </div>
+                <div className="middle row">
+                    <div className="col f-col"></div>
+                    <div className="col s-col">
+                        <p className="text">
+                        Hey! I just published a new bounty. Feel free to check it out here. #Freelensers<a className="link" href='http://localhost:3001/Bounty/11'>http://localhost:3001/Bounty/11</a>
+                        </p>
+                    </div>
+                    <div className="col t-col"></div>
+                </div>
+            </div>
+          </div>
 						<>
 						{posts.map(inner => (
 						<>

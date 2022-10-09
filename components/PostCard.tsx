@@ -24,7 +24,7 @@ const PostCard =({Post} : {Post: any}) => {
                 <div className="col f-col"></div>
                 <div className="col s-col">
                     <p className="text">
-                    {Post.metadata.description} <a className="link" href='https://ethglobal.com'>https://freelensers.xyz/bounty/fui2389fhsn</a>
+                    {Post.metadata.description}
                     </p>
                 </div>
                 <div className="col t-col"></div>
