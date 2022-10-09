@@ -26,35 +26,36 @@ const PopUp = () => {
 								<div className="form row">
 									<div className="form-col col-12">
 										<label for="prize" className="form-label">Prize amount</label>
-										<div class="input-group">
+										<div className="input-group">
 											<input id="prize" type="number" className="form-control" placeholder="1000" required />
-											<select class="btn dropdown-toggle" type="button">
+											<select className="btn dropdown-toggle" type="button">
 												<option>MATIC</option>
 												<option>USDC</option>
 											</select>
 										</div>
 									</div>
-									<div className="form row">
-										<div className="form-col col-12">
-											<label for="date" className="form-label">Live until</label>
-											<input id="date" className="form-control" type="date" required />
-										</div>
-									</div>
-									<div className="form row">
-										<div className="form-col col-12">
-											<label for="applicants" className="form-label">Number of applicants</label>
-											<input id="applicants" className="form-control" type="number" placeholder="3" required />
-										</div>
-									</div>
-									<div className="form row">
-										<button type="submit" className="submit-btn btn-type-2">Confirm</button>
+								</div>
+								<div className="form row">
+									<div className="form-col col-12">
+										<label for="date" className="form-label">Live until</label>
+										<input id="date" className="form-control" type="date" required />
 									</div>
 								</div>
-							</form>
-						</div>
+								<div className="form row">
+									<div className="form-col col-12">
+										<label for="applicants" className="form-label">Number of applicants</label>
+										<input id="applicants" className="form-control" type="number" placeholder="3" required />
+									</div>
+								</div>
+								<div className="form row">
+									<button type="submit" className="submit-btn btn-type-2">Confirm</button>
+								</div>
+							</div>
+						</form>
 					</div>
-				</section>
-			</div>
+				</div>
+			</section>
+		</div>
 	)
 }
 
