@@ -6,7 +6,7 @@ import Script from 'next/script'
 import Navbar from '../components/Navbar.tsx'
 import Feed from './Feed.tsx'
 import Bounty from './Bounty.tsx'
-import Landing from './Landing.tsx'
+import Landing from './landing.tsx'
 import PopUp from '../components/PopUp_Create.tsx'
 import ViewBounties from './View_Bounties.tsx'
 

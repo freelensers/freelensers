@@ -4,9 +4,13 @@ import Link from 'next/link'
 const LandingNavBar = ()=> {
     return <>
         <nav className="navbar">
-            <Link href="/"><a className="navbar-brand">Freelensers</a></Link>
+            <Link href="/">
+                <a className="nav-link">Freelensers</a>
+            </Link>
             <div className="nav-items">
-                <Link href="/Feed" className="GreenButton"> Launch app</Link>
+                <Link href="/Feed">
+                    <a className="btn-type-2">Launch app</a>
+                </Link>
             </div>
         </nav>
     </>
