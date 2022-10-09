@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
 import Image from 'next/image'
-import Navbar from '../../components/Navbar.tsx'
+import Navbar from '../components/Navbar'
 import dashboardcss from '../../styles/dashboard.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -10,7 +10,7 @@ export const getStaticPaths = async () => {
     const res = await fetch('https://freelensers.azurewebsites.net/api/GetBounties');
     const datos = await res.json();
 
-    const paths = datos.bounties.map(bounty =>{
+    const paths = datos.bounties.map((bounty:any) =>{
     return {
       params: { id: bounty.id.toString() }
     }
@@ -22,7 +22,7 @@ export const getStaticPaths = async () => {
 
   }
 
-  export const getStaticProps = async (context) => {
+  export const getStaticProps = async (context:any) => {
     const id = context.params.id;
     const respuesta = await fetch('https://freelensers.azurewebsites.net/api/GetBounty?id=' + id);
     const data = await respuesta.json();
@@ -32,7 +32,7 @@ export const getStaticPaths = async () => {
     }
   }
 
-const Bounty: NextPage = ({bounty}) => {
+const Bounty: NextPage = ({bounty}:any) => {
     console.log(bounty)
 	return (
 		<main>
