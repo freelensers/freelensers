@@ -1,3 +1,4 @@
+import Link from 'next/link'
 const BountyPost =({bounty}:any)=>{
     const formatAddress = (address:any) => {
       if (address.length === 42) {
@@ -35,9 +36,11 @@ return(
         </p>
     </div>
     <div className="col-6 text-end">
-        <a href="../Bounty" className="btn-type-1">
+    <Link href={'/Bounty/' + bounty.id} key={bounty.id}>
+        <button className="btn-type-1">
             View bounty
-        </a>
+        </button>
+        </Link>
     </div>
 </div>
 </div>
