@@ -94,7 +94,7 @@ section.popup .popup-container .popup-content h1.title { font-size: 1.3rem; font
 section.popup .popup-container .popup-content form {  }
 section.popup .popup-container .popup-content form label { font-size: .9rem; font-weight: 400; color: var(--white); line-height: 1; margin-bottom: 0.75rem; }
 section.popup .popup-container .popup-content form input { font-size: .9rem; font-weight: 400; color: var(--white); line-height: 1; margin-bottom: 0; background-color: var(--grey-bg-forms); border: 1px solid var(--stroke); outline: none; box-shadow: none; }
-
+section.popup .popup-container .popup-content form .submit-btn { display: inline-block; width: auto; margin-top: 1.5rem; margin-bottom: 0; }
 /*section.popup .popup-container .popup-content form input::placeholder {
   color: red;
 }*/
