@@ -589,7 +589,7 @@ const Feed: NextPage = ({post , bounties} : any) => {
                     <div className="col f-col"></div>
                     <div className="col s-col">
                         <p className="text">
-                        Hey! I just published a new bounty. Feel free to check it out here. #Freelensers<a className="link" href='http://localhost:3001/Bounty/11'>http://localhost:3001/Bounty/11</a>
+                        Hey! I just published a new bounty. Feel free to check it out here. #Freelensers<a className="link" href='http://localhost:3000/Bounty/11'>http://localhost:3000/Bounty/11</a>
                         </p>
                     </div>
                     <div className="col t-col"></div>
