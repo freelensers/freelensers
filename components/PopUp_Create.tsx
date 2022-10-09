@@ -196,7 +196,7 @@ const PopUp = () => {
 	return (
 		<div className="darken">
 			<section className="popup">
-				<button className="close" onClick={closeCreateModal}><img src="assets/icons/close.svg" alt="close button icon" /></button>
+				<button className="close" onClick={closeCreateModal}><img src="../assets/icons/close.svg" alt="Close button" /></button>
 				<div className="container popup-container">
 					<div className="content popup-content">
 						<h1 className="title">Create your bounty</h1>
