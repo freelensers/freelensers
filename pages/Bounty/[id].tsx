@@ -117,12 +117,12 @@ const Bounty: NextPage = ({bounty}:any) => {
         						<div className="container card-container">
         							<div className="header row">
         								<img src="../assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
-        								<h1 className="title">Iñigo Zepeda</h1>
-        								<h2 className="username">@inigo.lens</h2>
+        								<h1 className="title">Lens User</h1>
+        								<h2 className="username">@user.lens</h2>
         							</div>
         							<div className="middle row">
         								<p className="text">
-        									UI UX designer and software engineer living in Mexico
+        									UI UX designer and software engineer living in Bogota
         								</p>
         							</div>
         							<div className="bottom row">
