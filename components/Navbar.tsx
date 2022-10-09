@@ -129,14 +129,14 @@ const Navbar = ()=>{
 
       const loggedInView = (
         <>
-            <button onClick={logout} className="ConnectButton">
+            <button onClick={logout} className="btn-type-2">
             Log Out
         </button>
         </>
       );
 
       const unloggedInView = (
-        <button onClick={login} className="ConnectButton">
+        <button onClick={login} className="btn-type-2">
           Login
         </button>
       );
@@ -166,34 +166,32 @@ const Navbar = ()=>{
 
     return(
         <nav className="navbar scroll">
-            <Link href="/">
-                <a className="navbar-brand">Freelensers</a>
-            </Link>
             <div className="nav-items">
                 <ul>
+                    <Link href="/">
+                        Freelensers
+                    </Link>
                     <Link href='/Feed'>
                         Feed
                     </Link>
-                    {/* <Link href='/Bounties'>
-                        Bounties
-                    </Link> */}
                     <li className="nav-item-bounties">
                         Create Bounties 
                     </li>
                 </ul>
             </div>
             <div className="nav-items">
-                <button className="BountyButton" onClick={openCreateModal}>Create Bounty</button>
-                <div className="account">
-
+              <button className="notif-bell">
+                <img src="../assets/icons/bell.svg" alt="Notification Bell" />
+              </button>
+              <button className="BountyButton" onClick={openCreateModal}>Create Bounty</button>
+              <div className="account">
                 <div className="grid">{provider ? loggedInView : unloggedInView}</div>
-
-                </div>
-                <a href="javascript:;" id="nav-toggler" onClick={nav}>
-                    <div className="bar1"></div>
-                    <div className="bar2"></div>
-                    <div className="bar3"></div>
-                </a>
+              </div>
+              <a href="javascript:;" id="nav-toggler" onClick={nav}>
+                  <div className="bar1"></div>
+                  <div className="bar2"></div>
+                  <div className="bar3"></div>
+              </a>
             </div>
         </nav>
     )
