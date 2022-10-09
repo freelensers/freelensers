@@ -172,6 +172,7 @@ const PopUp = () => {
 	}
 
 	useEffect(() => {
+		connectWallet()
 		if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
 			setProvider(provider)
@@ -179,6 +180,7 @@ const PopUp = () => {
 			setSigner(signer)
 			// other stuff using provider here
 		}
+		
 	}, []);
 
 	useEffect(() => {
@@ -253,7 +255,6 @@ const PopUp = () => {
 									)}
 							</div>
 						</form>
-						<button onClick={connectWallet}>Connect Wallet</button>
 					</div>
 				</div>
 			</section>

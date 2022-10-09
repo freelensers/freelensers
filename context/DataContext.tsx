@@ -4,12 +4,16 @@ type dataContextType = {
   createModalIsOpen: boolean;
   openCreateModal: () => void;
   closeCreateModal: () => void;
+  account: any;
+  setAccount: any;
 }
 
 const dataContextDefaultValues: dataContextType = {
   createModalIsOpen: false,
   openCreateModal: () => {},
   closeCreateModal: () => {},
+  account: null,
+  setAccount: null,
 }
 
 type Props = {
@@ -36,10 +40,14 @@ export const DataContextProvider = ({ children }: Props) => {
     document.getElementsByTagName("body")[0].classList.remove("popup-open");
   }
   
+  const [account, setAccount] = useState(null);
+
   const value = {
     createModalIsOpen,
     openCreateModal,
     closeCreateModal,
+    account,
+    setAccount,
   }
 
   return (

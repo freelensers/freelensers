@@ -15,8 +15,7 @@ const clientId = "BDG5gmJwcwIaauNIQXvp403mBSVCF2Hw4jr5YYpZ7dbcAn5cQlo3z58cOzJRCN
 
 const Navbar = ()=>{
 
-  const { createModalIsOpen } = useDataContext()
-
+    const { createModalIsOpen, setAccount } = useDataContext()
 
     const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
     const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(null);
@@ -45,6 +44,11 @@ const Navbar = ()=>{
     
           init();
       }, []);
+
+      useEffect(() => {
+        setAccount(getAccounts())
+        console.log(getAccounts())
+      }, [provider])
 
       const login = async () => {
         if (!web3auth) {
