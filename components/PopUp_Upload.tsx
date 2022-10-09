@@ -16,28 +16,19 @@ const PopUp = () => {
 								<div className="form row">
 									<div className="form-col col-12">
 										<label for="description" className="form-label">Description</label>
-										<input id="description" className="form-control" type="text" placeholder="Share a description about your bounty" required />
+										<input id="description" className="form-control" type="text" placeholder="Share a description about your entry" required />
 									</div>
 								</div>
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="prize" className="form-label">Prize amount</label>
-										<div class="input-group">
-										  <input id="prize" type="number" className="form-control" placeholder="1000" required />
-										  <span className="input-group-text">MATIC</span>
-										</div>
+										<label for="link" className="form-label">Link</label>
+										<input id="description" className="form-control" type="text" placeholder="Share a link with your entry" />
 									</div>
 								</div>
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="date" className="form-label">Live until</label>
-										<input id="date" className="form-control" type="date" required />
-									</div>
-								</div>
-								<div className="form row">
-									<div className="form-col col-12">
-										<label for="applicants" className="form-label">Number of applicants</label>
-										<input id="applicants" className="form-control" type="number" placeholder="3" required />
+										<label for="files" className="form-label">and / or</label>
+										<input id="files" className="form-control" type="file" />
 									</div>
 								</div>
 								<div className="form row">

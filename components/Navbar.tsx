@@ -33,9 +33,9 @@ const Navbar = ()=>{
                     <Link href='/Feed'>
                         Feed
                     </Link>
-                    <Link href='/Bounties'>
+                    {/* <Link href='/Bounties'>
                         Bounties
-                    </Link>
+                    </Link> */}
                     <li className="nav-item-bounties">
                         Create Bounties 
                     </li>
