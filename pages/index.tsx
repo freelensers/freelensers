@@ -553,7 +553,7 @@ const Home: NextPage = ({post}) => {
         <ViewBounties />
         {/*<Bounty />*/}
 
-        {/*{createModalIsOpen && <PopUp />}*/}
+        {createModalIsOpen && <PopUp />}
         {/*<Feed />*/}
         {/*<Landing />*/}
           <div>

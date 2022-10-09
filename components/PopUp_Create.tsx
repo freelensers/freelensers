@@ -5,6 +5,7 @@ import dashboardcss from '../styles/dashboard.css'
 import Modal from 'react-modal'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
+import { WorldIDWidget } from '@worldcoin/id'
 
 import { piggyAbi, erc20Abi } from '../constants/abis'
 
@@ -24,6 +25,7 @@ const PopUp = () => {
 	const [applicants, setApplicants] = useState(0)
 	const [txHash, setTxHash] = useState('')
 	const [isApproved, setIsApproved] = useState(false)
+	const [isVerified, setIsVerified] = useState(false)
 
 	const contractAddress = '0x8aDa712f786F840f1AD1c556Ea47018f0370ef68'
 
@@ -145,6 +147,30 @@ const PopUp = () => {
 		}
 	}
 
+	const verifyIdentity = async (verification) => {
+		try {
+			verification["action_id"] = "wid_staging_f3a312cdc8dc4681b54e8227cbe09c7c"
+			verification["signal"] = "mySignal"
+			console.log(verification)
+			setIsVerified(true)
+			await fetch('https://freelensers.azurewebsites.net/api/VerifyHumanity', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					ethAddress: account,
+					verificationResponse: verification
+				})
+			
+			}).then(res => () => {
+					console.log(res)
+			})
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	useEffect(() => {
 		if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
 			const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -208,13 +234,23 @@ const PopUp = () => {
 										<input id="applicants" className="form-control" type="number" placeholder="3" required onChange={(e) => setApplicants(parseInt(e.target.value))} />
 									</div>
 								</div>
-								<div className="form row">
-									{!isApproved ? (
-										<button type="submit" className="submit-btn btn-type-2" onClick={approveToken}>Approve</button>
+								{!isVerified ? (
+										<WorldIDWidget
+											actionId="wid_staging_f3a312cdc8dc4681b54e8227cbe09c7c"
+											signal="mySignal"
+											enableTelemetry
+											onSuccess={verifyIdentity}
+											onError={(error) => console.log(error)}
+										/>
 									) : (
-										<button type="submit" className="submit-btn btn-type-2" onClick={handleSubmit}>Create</button>
+										<div className="form row">
+										{!isApproved ? (
+											<button type="submit" className="submit-btn btn-type-2" onClick={approveToken}>Approve</button>
+											) : (
+											<button type="submit" className="submit-btn btn-type-2" onClick={handleSubmit}>Create</button>
+										)}
+										</div>
 									)}
-								</div>
 							</div>
 						</form>
 						<button onClick={connectWallet}>Connect Wallet</button>
