@@ -112,7 +112,9 @@ section.popup .popup-container .popup-content form .input-group input {  }
 section.popup .popup-container .popup-content form .input-group .input-group-text { color: var(--grey-text); background-color: var(--grey-bg-forms); border: 1px solid var(--stroke); line-height: 1; font-size: .9rem; }
 
 section.popup .c-jYjTbW.t-ZqxnK { margin-right: auto; margin-left: auto; }
-section.popup .btn-type-1 {  }
+nav section.popup .btn-type-1 {  }
+
+nav section.popup form .btn-type-2 { font-size: 0.8rem; }
 
 
   

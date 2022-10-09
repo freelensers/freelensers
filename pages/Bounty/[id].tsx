@@ -32,6 +32,20 @@ export const getStaticPaths = async () => {
     }
   }
 
+  const formatAddress = (address:any) => {
+    if (address.length === 42) {
+      return address.substring(0, 6) + "..." + address.substring(38);
+    } else {
+      return address;
+    }
+  }
+  const reduceAddress = (address:any) => {
+      var f5 = address.substring(0, 5);
+      var l4 = address.substring(address.length - 4);
+      var result = f5 + "..." + l4;
+      return result;
+  }
+
 const Bounty: NextPage = ({bounty}:any) => {
     console.log(bounty)
 	return (
