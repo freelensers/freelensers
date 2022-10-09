@@ -12,7 +12,7 @@ const PopUp = () => {
 					<div className="content popup-content">
 						<h1 className="title">Create your bounty</h1>
 						<form action="javascript:void(0);" onSubmit={console.log("Submitted")} className="modal-content needs-validation">
-							<div className="middle form-container">
+							<div className="form-container">
 								<div className="form row">
 									<div className="form-col col-12">
 										<label for="description" className="form-label">Description</label>
@@ -40,9 +40,9 @@ const PopUp = () => {
 										<input id="applicants" className="form-control" type="number" placeholder="3" required />
 									</div>
 								</div>
-							</div>
-							<div className="form row">
-								<button type="submit" className="pay submit-btn">Confirm</button>
+								<div className="form row">
+									<button type="submit" className="pay submit-btn">Confirm</button>
+								</div>
 							</div>
 						</form>
 					</div>
