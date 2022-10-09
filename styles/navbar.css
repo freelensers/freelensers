@@ -12,8 +12,8 @@ nav .nav-items a:hover { color: var(--main-green); }
 nav .btn-type-2 { font-size: 1rem; }
 
 
-nav .notif-bell {  }
-nav .notif-bell img { height: 1rem; width: auto; }
+nav .notif-bell { background: transparent; outline: none; border: 0; }
+nav .notif-bell img { height: 1.3rem; width: auto; filter: var(--white-filter); }
 
 
 /*Nav toggler*/
