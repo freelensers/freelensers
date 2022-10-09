@@ -33,6 +33,10 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: var(--grey-text-filter);
+}
+
 
 
 /**********Large (lg)**********/
