@@ -10,6 +10,7 @@ nav .nav-items a { color: var(--white); text-decoration: none; transition: 0.5s;
 nav .nav-items a:hover { color: var(--main-green); }
 
 nav .nav-link { color: var(--white); text-decoration: none; transition: 0.5s; }
+nav .nav-link img { filter: var(--white-filter); height: 2rem; width: auto; vertical-align: text-bottom; }
 nav .nav-link:hover { color: var(--main-green); }
 
 nav .btn-type-2 { font-size: 1rem; }
