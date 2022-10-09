@@ -65,6 +65,8 @@ input::-webkit-inner-spin-button {
     filter: var(--grey-text-filter);
 }
 
+#w2a-modal { z-index: 5; }
+
 
 
 /**********Large (lg)**********/
