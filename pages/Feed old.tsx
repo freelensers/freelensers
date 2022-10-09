@@ -8,7 +8,6 @@ import Navbar from '../components/Navbar.tsx'
 import Bounty from './Bounty.tsx'
 import Landing from './Landing.tsx'
 import PostCard from '../components/PostCard'
-import BountyPost from '../components/BountyPost'
 
 import globals from '../styles/globals.css'
 import dashboardcss from '../styles/dashboard.css'
@@ -376,22 +375,17 @@ const searchPostsQuery = `query Search {
   `
 
 export async function getStaticProps(){
-    const res = await fetch('https://freelensers.azurewebsites.net/api/GetBounties');
-    const datos = await res.json();
-
     const response = await apolloClient.query({
       query: gql(searchPostsQuery),
     })
     console.log(response.data)
     const data = response.data;
     return {
-      props: { post: data , bounties: datos.bounties}
+      props: { post: data }
     }
   }
 
-
-const Feed: NextPage = ({post , bounties}) => {
-  console.log(bounties)
+const Feed: NextPage = ({post}) => {
 
   const [provider, setProvider] = useState<ethers.providers.Web3Provider>()
   const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
@@ -639,11 +633,186 @@ const Feed: NextPage = ({post , bounties}) => {
 									<h1 id="Active-Bounties-toggler" className="title" onClick={fAccordion} data-show="false">Active bounties<img src="assets/icons/arrow_down_icon.svg" className="icon" alt="Chevron icon" /></h1>
 								</div>
 								<div id="Active-Bounties-content" className="middle row posts collapse">
-                {bounties.map(bounty=>(
-        <>
-        <BountyPost bounty ={bounty}/>
-        </>
-      ))}
+									<div className="post">
+										<div className="top row">
+											<div className="col-8">
+												<h1 className="name">Stani Lens</h1>
+												<h2 className="username">by @stani.lens</h2>
+											</div>
+											<div className="col-4">
+												<p className="timestamp">10 hours ago</p>
+											</div>
+										</div>
+										<div className="middle row">
+											<div className="col-12">
+												<p className="text">
+													Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
+												</p>
+											</div>
+										</div>
+										<div className="bottom row">
+											<div className="col-6">
+												<p className="prize">
+													$1000 USD as a prize
+												</p>
+											</div>
+											<div className="col-6 text-end">
+												<button className="btn-type-1">
+													View bounty
+												</button>
+											</div>
+										</div>
+									</div>
+									<div className="post">
+										<div className="top row">
+											<div className="col-8">
+												<h1 className="name">Stani Lens</h1>
+												<h2 className="username">by @stani.lens</h2>
+											</div>
+											<div className="col-4">
+												<p className="timestamp">10 hours ago</p>
+											</div>
+										</div>
+										<div className="middle row">
+											<div className="col-12">
+												<p className="text">
+													Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
+												</p>
+											</div>
+										</div>
+										<div className="bottom row">
+											<div className="col-6">
+												<p className="prize">
+													$1000 USD as a prize
+												</p>
+											</div>
+											<div className="col-6 text-end">
+												<button className="btn-type-1">
+													View bounty
+												</button>
+											</div>
+										</div>
+									</div>
+									<div className="post">
+										<div className="top row">
+											<div className="col-8">
+												<h1 className="name">Stani Lens</h1>
+												<h2 className="username">by @stani.lens</h2>
+											</div>
+											<div className="col-4">
+												<p className="timestamp">10 hours ago</p>
+											</div>
+										</div>
+										<div className="middle row">
+											<div className="col-12">
+												<p className="text">
+													Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
+												</p>
+											</div>
+										</div>
+										<div className="bottom row">
+											<div className="col-6">
+												<p className="prize">
+													$1000 USD as a prize
+												</p>
+											</div>
+											<div className="col-6 text-end">
+												<button className="btn-type-1">
+													View bounty
+												</button>
+											</div>
+										</div>
+									</div>
+									<div className="post">
+										<div className="top row">
+											<div className="col-8">
+												<h1 className="name">Stani Lens</h1>
+												<h2 className="username">by @stani.lens</h2>
+											</div>
+											<div className="col-4">
+												<p className="timestamp">10 hours ago</p>
+											</div>
+										</div>
+										<div className="middle row">
+											<div className="col-12">
+												<p className="text">
+													Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
+												</p>
+											</div>
+										</div>
+										<div className="bottom row">
+											<div className="col-6">
+												<p className="prize">
+													$1000 USD as a prize
+												</p>
+											</div>
+											<div className="col-6 text-end">
+												<button className="btn-type-1">
+													View bounty
+												</button>
+											</div>
+										</div>
+									</div>
+									<div className="post">
+										<div className="top row">
+											<div className="col-8">
+												<h1 className="name">Stani Lens</h1>
+												<h2 className="username">by @stani.lens</h2>
+											</div>
+											<div className="col-4">
+												<p className="timestamp">10 hours ago</p>
+											</div>
+										</div>
+										<div className="middle row">
+											<div className="col-12">
+												<p className="text">
+													Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
+												</p>
+											</div>
+										</div>
+										<div className="bottom row">
+											<div className="col-6">
+												<p className="prize">
+													$1000 USD as a prize
+												</p>
+											</div>
+											<div className="col-6 text-end">
+												<button className="btn-type-1">
+													View bounty
+												</button>
+											</div>
+										</div>
+									</div>
+									<div className="post">
+										<div className="top row">
+											<div className="col-8">
+												<h1 className="name">Stani Lens</h1>
+												<h2 className="username">by @stani.lens</h2>
+											</div>
+											<div className="col-4">
+												<p className="timestamp">10 hours ago</p>
+											</div>
+										</div>
+										<div className="middle row">
+											<div className="col-12">
+												<p className="text">
+													Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
+												</p>
+											</div>
+										</div>
+										<div className="bottom row">
+											<div className="col-6">
+												<p className="prize">
+													$1000 USD as a prize
+												</p>
+											</div>
+											<div className="col-6 text-end">
+												<button className="btn-type-1">
+													View bounty
+												</button>
+											</div>
+										</div>
+									</div>
 									<button className="btn-type-2">View all bounties</button>
 								</div>
 							</div>
