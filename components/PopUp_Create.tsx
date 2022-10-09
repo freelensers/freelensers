@@ -131,7 +131,7 @@ const PopUp = () => {
 		}
 	}
 	
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: { preventDefault: () => void }) => {
 		e.preventDefault()
 		let tokenAddress = ""
 		console.log(description, amount, token, tokenAddress, deadline, applicants)
@@ -147,7 +147,7 @@ const PopUp = () => {
 		}
 	}
 
-	const verifyIdentity = async (verification) => {
+	const verifyIdentity = async (verification: any) => {
 		try {
 			verification["action_id"] = "wid_staging_f3a312cdc8dc4681b54e8227cbe09c7c"
 			verification["signal"] = "mySignal"
@@ -204,16 +204,16 @@ const PopUp = () => {
 							<div className="form-container">
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="description" className="form-label">Description</label>
+										<label htmlFor="description" className="form-label">Description</label>
 										<input id="description" className="form-control" type="text" placeholder="Share a description about your bounty" required onChange={(e) => setDescription(e.target.value)} />
 									</div>
 								</div>
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="prize" className="form-label">Prize amount</label>
+										<label htmlFor="prize" className="form-label">Prize amount</label>
 										<div className="input-group">
 											<input id="prize" type="number" className="form-control" placeholder="1000" required onChange={(e) => setAmount(e.target.value)} />
-											<select className="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" onChange={(e) => setToken(e.target.value)}>
+											<select className="btn dropdown-toggle" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" onChange={(e) => setToken(e.target.value)}>
 												<option value="" selected disabled hidden>Choose token</option>
 												<option value="MATIC">MATIC</option>
 												<option value="DERC20">DERC20</option>
@@ -224,13 +224,13 @@ const PopUp = () => {
 								</div>
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="date" className="form-label">Live until</label>
+										<label htmlFor="date" className="form-label">Live until</label>
 										<input id="date" className="form-control" type="date" required onChange={(e) => setDeadline(e.target.value)} />
 									</div>
 								</div>
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="applicants" className="form-label">Number of applicants</label>
+										<label htmlFor="applicants" className="form-label">Number of applicants</label>
 										<input id="applicants" className="form-control" type="number" placeholder="3" required onChange={(e) => setApplicants(parseInt(e.target.value))} />
 									</div>
 								</div>

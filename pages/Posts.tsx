@@ -3,10 +3,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Script from 'next/script'
 
-import Navbar from '../components/Navbar.tsx'
-import Feed from './Feed.tsx'
-import Bounty from './Bounty.tsx'
-import Landing from './Landing.tsx'
+import Navbar from '../components/Navbar'
+import Feed from './Feed'
+import Bounty from './Bounty'
+import Landing from './landing'
 
 import globals from '../styles/globals.css'
 import dashboardcss from '../styles/dashboard.css'
@@ -499,7 +499,7 @@ const Home: NextPage = () => {
     }
   }
 
-  const [clientWindowHeight, setClientWindowHeight] = useState("");
+  const [clientWindowHeight, setClientWindowHeight] = useState<number>(0)
 
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);

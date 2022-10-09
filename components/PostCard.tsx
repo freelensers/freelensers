@@ -1,4 +1,4 @@
-const PostCard =({Post}) =>{
+const PostCard =({Post} : {Post: any}) => {
     //tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
 
     var pimage = Post.profile.picture.original.url;

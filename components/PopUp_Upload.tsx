@@ -11,23 +11,23 @@ const PopUp = () => {
 				<div className="container popup-container">
 					<div className="content popup-content">
 						<h1 className="title">Entry upload</h1>
-						<form action="javascript:void(0);" onSubmit={console.log("Submitted")} className="modal-content needs-validation">
+						<form action="javascript:void(0);" className="modal-content needs-validation">
 							<div className="form-container">
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="description" className="form-label">Description</label>
+										<label htmlFor="description" className="form-label">Description</label>
 										<input id="description" className="form-control" type="text" placeholder="Share a description about your entry" required />
 									</div>
 								</div>
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="link" className="form-label">Link</label>
+										<label htmlFor="link" className="form-label">Link</label>
 										<input id="description" className="form-control" type="text" placeholder="Share a link with your entry" />
 									</div>
 								</div>
 								<div className="form row">
 									<div className="form-col col-12">
-										<label for="files" className="form-label">and / or</label>
+										<label htmlFor="files" className="form-label">and / or</label>
 										<input id="files" className="form-control" type="file" />
 									</div>
 								</div>

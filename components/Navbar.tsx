@@ -155,12 +155,12 @@ const Navbar = ()=>{
     const nav = () => {
       var nav = document.getElementsByTagName("nav")[0];
       var toggler = document.getElementById("nav-toggler");
-      if (toggler.classList.contains("open")) {
+      if (toggler?.classList.contains("open")) {
         nav.classList.remove("open");
         toggler.classList.remove("open");
       } else {
         nav.classList.add("open");
-        toggler.classList.add("open");
+        toggler?.classList.add("open");
       }
     }
 

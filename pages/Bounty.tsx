@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
 import Image from 'next/image'
-import Navbar from '../components/Navbar.tsx'
+import Navbar from '../components/Navbar'
 import dashboardcss from '../styles/dashboard.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
