@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar.tsx'
 import Feed from './Feed.tsx'
 import Bounty from './Bounty.tsx'
 import Landing from './Landing.tsx'
-import PopUp from '../components/PopUp_Upload.tsx'
+import PopUp from '../components/PopUp_Create.tsx'
 
 import globals from '../styles/globals.css'
 import dashboardcss from '../styles/dashboard.css'

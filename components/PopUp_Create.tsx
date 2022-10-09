@@ -7,7 +7,7 @@ const PopUp = () => {
 	return (
 		<div className="darken">
 			<section className="popup">
-				{/*<button className="close"><img src="./icon/close.svg" alt="close button icon" /></button>*/}
+				{/*<button className="close"><img src="./icon/close.svg" alt="Close button" /></button>*/}
 				<div className="container popup-container">
 					<div className="content popup-content">
 						<h1 className="title">Create your bounty</h1>
@@ -22,9 +22,13 @@ const PopUp = () => {
 								<div className="form row">
 									<div className="form-col col-12">
 										<label for="prize" className="form-label">Prize amount</label>
+
 										<div class="input-group">
-										  <input id="prize" type="number" className="form-control" placeholder="1000" required />
-										  <span className="input-group-text">MATIC</span>
+											<input id="prize" type="number" className="form-control" placeholder="1000" required />
+											<select class="btn dropdown-toggle" type="button">
+												<option>MATIC</option>
+												<option>USDC</option>
+											</select>
 										</div>
 									</div>
 								</div>
