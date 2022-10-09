@@ -205,7 +205,7 @@ const Navbar = ()=>{
             <div className="nav-items">
                 <ul>
                     <Link href="/">
-                        Freelensers
+                        <a className="nav-link"><img src="./logo-free.svg" alt="FreeLensers logo" /></a>
                     </Link>
                     <Link href='/Feed'>
                         Feed
