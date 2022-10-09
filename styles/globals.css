@@ -27,6 +27,16 @@ a { color: inherit; text-decoration: none; }
 
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: var(--grey-text-filter);
+}
+
 
 
 /**********Large (lg)**********/

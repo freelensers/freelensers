@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar.tsx'
 import Feed from './Feed.tsx'
 import Bounty from './Bounty.tsx'
 import Landing from './Landing.tsx'
+import PopUp from '../components/PopUp_Upload.tsx'
 
 import globals from '../styles/globals.css'
 import dashboardcss from '../styles/dashboard.css'
@@ -545,26 +546,9 @@ const Home: NextPage = ({post}) => {
       <main>
         <Navbar />
         <Bounty />
-        <>
-      {posts.map(inner => (
-        <>
-          {inner.search?.items?.map(Post => (
-            <>
-              <div>{Post.id}</div>
-              <div>{Post.appId}</div>
-              <div>{Post.profile.name}</div>
-              <div>{Post.profile.handle}</div>
-              <div>{Post.metadata.content}</div>
-              <div>{Post.metadata.description}</div>
-              <div>{Post.createdAt}</div>
-            
-            </>
-          ))}
-        </>
-      ))}
-      <div>
-      </div>
-    </>
+
+        <PopUp />
+
         {/*<Feed />*/}
         {/*<Landing />*/}
           <div>
