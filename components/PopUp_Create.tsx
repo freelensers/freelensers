@@ -15,7 +15,7 @@ const PopUp = () => {
 
 	const [provider, setProvider] = useState<ethers.providers.Web3Provider>()
 	const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
-	const [account, setAccount] = useState<string>()
+	const [account, setAccount] = useState<any>()
 
 	const [description, setDescription] = useState('')
 	const [amount, setAmount] = useState('')
@@ -32,11 +32,6 @@ const PopUp = () => {
 	const connectWallet = async () => {
 		try {
 			await window.ethereum.request({ method: 'eth_requestAccounts' })
-			signer?.getAddress().then((address) => {
-				setAccount(address)
-				console.log(address)
-			}
-			)
 		} catch (error) {
 			console.log(error)
 		}
@@ -171,6 +166,17 @@ const PopUp = () => {
 		}
 	}
 
+	const getAccount = async () => {
+		try {
+			const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+			const account = accounts[0]
+			setAccount(account)
+			console.log(account)
+		} catch (error) {
+			console.log(error)
+		}
+	}
+
 	useEffect(() => {
 		connectWallet()
 		if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
@@ -194,6 +200,10 @@ const PopUp = () => {
 			setIsApproved(true)
 		}
 	}, [tokenAddress])
+
+	useEffect(() => {
+		getAccount()
+	}, [provider])
 
 	return (
 		<div className="darken">
@@ -255,7 +265,7 @@ const PopUp = () => {
 									)}
 							</div>
 						</form>
-						<button onClick={connectWallet}>Connect Wallet</button>
+						{/* <button className="btn-type-1 mt-2" onClick={connectWallet}>Connect Wallet</button> */}
 					</div>
 				</div>
 			</section>

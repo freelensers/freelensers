@@ -644,7 +644,7 @@ const Feed: NextPage = ({post , bounties} : any) => {
         <BountyPost bounty ={bounty}/>
         </>
       ))}
-									<button className="btn-type-2">View all bounties</button>
+									{/*<button className="btn-type-2">View all bounties</button>*/}
 								</div>
 							</div>
 						</div>

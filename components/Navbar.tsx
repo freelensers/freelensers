@@ -13,6 +13,8 @@ import PopUp from '../components/PopUp_Create'
 
 const clientId = "BDG5gmJwcwIaauNIQXvp403mBSVCF2Hw4jr5YYpZ7dbcAn5cQlo3z58cOzJRCN8BYxwaB4RDJOeKnpfluuXEqOY";
 
+
+
 const Navbar = ()=>{
 
     const { createModalIsOpen, setAccount } = useDataContext()
@@ -58,7 +60,7 @@ const Navbar = ()=>{
         const web3authProvider = await web3auth.connect();
         setProvider(web3authProvider);
       };
-    
+
       const getUserInfo = async () => {
         if (!web3auth) {
           console.log("web3auth not initialized yet");
@@ -166,7 +168,7 @@ const Navbar = ()=>{
         nav.classList.add("open");
         toggler?.classList.add("open");
       }
-    }
+    }   
 
     return(
         <nav className="navbar scroll">
