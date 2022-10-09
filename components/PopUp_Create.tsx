@@ -9,27 +9,29 @@ const PopUp = () => {
 	const { createModalIsOpen, closeCreateModal  } = useDataContext()
 	
 	return (
-			<div className="darken">
-				<section className="popup">
-					<button className="close" onClick={closeCreateModal}>X</button>
-					<div className="container popup-container">
-						<div className="content popup-content">
-							<h1 className="title">Create your bounty</h1>
-							<form action="javascript:void(0);" onSubmit={console.log("Submitted")} className="modal-content needs-validation">
-								<div className="form-container">
-									<div className="form row">
-										<div className="form-col col-12">
-											<label for="description" className="form-label">Description</label>
-											<input id="description" className="form-control" type="text" placeholder="Share a description about your bounty" required />
-										</div>
+		<div className="darken">
+			<section className="popup">
+				<button className="close" onClick={closeCreateModal}>X</button>
+				<div className="container popup-container">
+					<div className="content popup-content">
+						<h1 className="title">Create your bounty</h1>
+						<form action="javascript:void(0);" onSubmit={console.log("Submitted")} className="modal-content needs-validation">
+							<div className="form-container">
+								<div className="form row">
+									<div className="form-col col-12">
+										<label for="description" className="form-label">Description</label>
+										<input id="description" className="form-control" type="text" placeholder="Share a description about your bounty" required />
 									</div>
-									<div className="form row">
-										<div className="form-col col-12">
-											<label for="prize" className="form-label">Prize amount</label>
-											<div class="input-group">
-												<input id="prize" type="number" className="form-control" placeholder="1000" required />
-												<span className="input-group-text">MATIC</span>
-											</div>
+								</div>
+								<div className="form row">
+									<div className="form-col col-12">
+										<label for="prize" className="form-label">Prize amount</label>
+										<div class="input-group">
+											<input id="prize" type="number" className="form-control" placeholder="1000" required />
+											<select class="btn dropdown-toggle" type="button">
+												<option>MATIC</option>
+												<option>USDC</option>
+											</select>
 										</div>
 									</div>
 									<div className="form row">
