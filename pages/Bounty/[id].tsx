@@ -72,9 +72,7 @@ const Bounty: NextPage = ({bounty}:any) => {
         							<div className="middle row">
         								<div className="col f-col"></div>
         								<div className="col s-col">
-        									<p className="text">
-                                            {bounty.description}<a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
-        									</p>
+        									<p className="text">{bounty.description}</p>
         								</div>
         								<div className="col t-col"></div>
         							</div>
