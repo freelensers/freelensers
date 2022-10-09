@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 
 import Image from 'next/image'
 import Navbar from '../components/Navbar'
-import dashboardcss from '../../styles/dashboard.css'
+import dashboardcss from '..../styles/dashboard.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -48,7 +48,7 @@ const Bounty: NextPage = ({bounty}:any) => {
         								
         								</div>
         								<div className="col s-col">
-        									<h1 className="name">{bounty.owner}</h1>
+        									<h1 className="name">{formatAddress(bounty.owner)}</h1>
         									<h2 className="username">@stani.lens</h2>
         								</div>
         								<div className="col t-col">

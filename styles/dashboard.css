@@ -146,6 +146,8 @@ main section.dashboard-container.view-bounties .entries .entry .btn-type-1 { whi
   main section.dashboard-container.view-bounty .column .content .cards .card-container .middle.row .f-col { display: none; width: 0; }
   /*main section.dashboard-container.view-bounty .column .content .cards .card-container .row .s-col { width: 64%; }
   main section.dashboard-container.view-bounty .column .content .cards .card-container .row .t-col { width: 24%; }*/
+
+  section.popup { width: 70%; }
 }
 
 /**********Medium (md)**********/
@@ -161,10 +163,13 @@ main section.dashboard-container.view-bounties .entries .entry .btn-type-1 { whi
   main section.dashboard-container.view-bounties .column .content .cards .card-container .row .f-col { width: 0%; padding-right: 0; }
   main section.dashboard-container.view-bounties .column .content .cards .card-container .row .s-col { width: 100%; }
   main section.dashboard-container.view-bounties .column .content .cards .card-container .row .t-col { width: 0%; }
+
+  section.popup { width: 80%; }
 }
 
 /**********Small (sm)**********/
 @media (max-width: 767.98px) {
+  section.popup { width: 98%; }
 }
 
 /**********Extra small (xs)**********/
