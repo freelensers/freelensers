@@ -19,10 +19,10 @@ const PopUp = () => {
 					'Content-Type':'application/json'
 				},
 				body: JSON.stringify({
-					description: description,
-					link: link,
-					file: file,
-					owner: account	
+					description:description,
+					link:link,
+					file:file
+	
 				})
 			}).then(res => ()=>( console.log(res)))
 	
@@ -30,10 +30,11 @@ const PopUp = () => {
 			console.log(error)
 		}
 	}
+	const { createModalIsOpen, closeCreateModal } = useDataContext()
 	return (
 		<div className="darken">
 			<section className="popup">
-				{/*<button className="close"><img src="./icon/close.svg" alt="close button icon" /></button>*/}
+			<button className="close" onClick={closeCreateModal}><img src="../assets/icons/close.svg" alt="Close button" /></button>
 				<div className="container popup-container">
 					<div className="content popup-content">
 						<h1 className="title">Entry upload</h1>
@@ -58,7 +59,7 @@ const PopUp = () => {
 									</div>
 								</div>
 								<div className="form row">
-									<button type="submit" className="submit-btn btn-type-2" onClick={uploadFiles}>Confirm</button>
+									<button type="submit" className="submit-btn btn-type-2" onClick={closeCreateModal}>Confirm</button>
 								</div>
 							</div>
 						</form>
