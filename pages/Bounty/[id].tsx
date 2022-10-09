@@ -32,6 +32,14 @@ export const getStaticPaths = async () => {
     }
   }
 
+  const formatAddress = (address:any) => {
+    if (address.length === 42) {
+      return address.substring(0, 6) + "..." + address.substring(38);
+    } else {
+      return address;
+    }
+  }
+
 const Bounty: NextPage = ({bounty}) => {
     console.log(bounty)
 	return (
@@ -48,7 +56,7 @@ const Bounty: NextPage = ({bounty}) => {
         								
         								</div>
         								<div className="col s-col">
-        									<h1 className="name">{bounty.owner}</h1>
+        									<h1 className="name">{formatAddress(bounty.owner)}</h1>
         									<h2 className="username">@stani.lens</h2>
         								</div>
         								<div className="col t-col">

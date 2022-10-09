@@ -20,8 +20,8 @@ const Landing: NextPage = () => {
                                 <Link href="/Feed">
                                     <a className="btn-type-2">Launch app</a>
                                 </Link>
-                                <Link href="https://github.com">
-                                    <a className="btn-type-3">GitHub</a>
+                                <Link href="https://github.com/freelensers">
+                                    <a className="btn-type-3" target="_blank">GitHub</a>
                                 </Link>
                             </div>
                         </div>

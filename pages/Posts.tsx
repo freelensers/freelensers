@@ -531,8 +531,8 @@ const Home: NextPage = () => {
         <Bounty />
         {/*<Feed />*/}
         {/*<Landing />*/}
-          <div>
-            {/* Create button to call function from test.tsx */}
+          {/*<div>
+             Create button to call function from test.tsx 
             <button onClick={connectWallet}>Connect Wallet</button>
             <button onClick={getMessage}>Get Message</button>
             <button onClick={authenticate}>Authenticate</button>
@@ -542,7 +542,7 @@ const Home: NextPage = () => {
             <input type="text" value={tokenAmount} onChange={(e) => setTokenAmount(e.target.value)} />      
             <button onClick={depositToken}>Deposit Token</button>
 
-          </div>
+          </div>*/}
       </main>
       {/*<Script
         id="bootstrap-js"
