@@ -9,11 +9,20 @@ import { Web3Auth } from "@web3auth/web3auth";
 import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from "@web3auth/base";
 import RPC from "../pages/Web3RPC";
 
+// Push
+import * as PushAPI from "@pushprotocol/restapi";
+import { getAddress } from 'ethers/lib/utils';
+import { useWeb3React } from "@web3-react/core";
+import { ethers } from 'ethers';
+
 const clientId = "BDG5gmJwcwIaauNIQXvp403mBSVCF2Hw4jr5YYpZ7dbcAn5cQlo3z58cOzJRCN8BYxwaB4RDJOeKnpfluuXEqOY";
+
+
 
 const Navbar = ()=>{
 
     const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
+    const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
     const [provider, setProvider] = useState<SafeEventEmitterProvider | null>(null);
 
     useEffect(() => {
@@ -49,6 +58,16 @@ const Navbar = ()=>{
         const web3authProvider = await web3auth.connect();
         setProvider(web3authProvider);
       };
+
+      useEffect(() => {
+		if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
+			const provider = new ethers.providers.Web3Provider(window.ethereum)
+			setProvider(provider)
+			const signer = provider.getSigner()
+			setSigner(signer)
+			// other stuff using provider here
+		}
+	}, []);
     
       const getUserInfo = async () => {
         if (!web3auth) {
@@ -141,11 +160,6 @@ const Navbar = ()=>{
         </button>
       );
 
-
-
-
-
-
     const { openCreateModal } = useDataContext()
 
     const router = useRouter()
@@ -164,6 +178,23 @@ const Navbar = ()=>{
       }
     }
 
+
+    const optInChannel = async () => {
+        await PushAPI.channels.subscribe({
+            signer: signer,
+            channelAddress: 'eip155:137:0x49d9Dc540A0Bd0539Dd92eb46f3A436d49aBea55', // channel address in CAIP
+            userAddress: await signer.getAddress(), // user address in CAIP
+            onSuccess: () => {
+             console.log('opt in success');
+            },
+            onError: () => {
+              console.error('opt in error');
+            },
+            env: 'staging'
+          })
+    }
+    
+
     return(
         <nav className="navbar scroll">
             <div className="nav-items">
@@ -174,16 +205,13 @@ const Navbar = ()=>{
                     <Link href='/Feed'>
                         Feed
                     </Link>
-                    <li className="nav-item-bounties">
-                        Create Bounties 
-                    </li>
                 </ul>
             </div>
             <div className="nav-items">
-              <button className="notif-bell">
+              <button className="notif-bell" onClick={optInChannel}>
                 <img src="../assets/icons/bell.svg" alt="Notification Bell" />
               </button>
-              <button className="BountyButton" onClick={openCreateModal}>Create Bounty</button>
+              <button className="btn-type-3" onClick={openCreateModal}>Create Bounty</button>
               <div className="account">
                 <div className="grid">{provider ? loggedInView : unloggedInView}</div>
               </div>
