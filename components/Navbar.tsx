@@ -23,16 +23,16 @@ const Navbar = ()=>{
     return(
         <nav className="navbar scroll">
             <Link href="/landing">
-                <a className="navbar-brand">Lentsy</a>
+                <a className="navbar-brand">Freelensers</a>
             </Link>
             <div className="nav-items">
                 <ul>
-                    <li>
+                    <Link href='/Feed'>
                         Feed
-                    </li>
-                    <li>
+                    </Link>
+                    <Link href='/Bounties'>
                         Bounties
-                    </li>
+                    </Link>
                     <li className="nav-item-bounties">
                         Create Bounties 
                     </li>
