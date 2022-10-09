@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 
 import Image from 'next/image'
-import Navbar from '../components/Navbar'
+import Navbar from '../../components/Navbar'
 import dashboardcss from '..../styles/dashboard.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -30,6 +30,20 @@ export const getStaticPaths = async () => {
     return {
       props: { bounty: data.bounties[0] }
     }
+  }
+
+  const formatAddress = (address:any) => {
+    if (address.length === 42) {
+      return address.substring(0, 6) + "..." + address.substring(38);
+    } else {
+      return address;
+    }
+  }
+  const reduceAddress = (address:any) => {
+      var f5 = address.substring(0, 5);
+      var l4 = address.substring(address.length - 4);
+      var result = f5 + "..." + l4;
+      return result;
   }
 
 const Bounty: NextPage = ({bounty}:any) => {
