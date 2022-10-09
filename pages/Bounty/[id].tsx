@@ -61,9 +61,7 @@ const Bounty: NextPage = ({bounty}:any) => {
         					<div className="cards">
         						<div className="container card-container">
         							<div className="top row">
-        								<div className="col f-col">
-        								
-        								</div>
+        								<div className="col f-col"></div>
         								<div className="col s-col">
         									<h1 className="name">{formatAddress(bounty.owner)}</h1>
         									<h2 className="username">@stani.lens</h2>
@@ -75,9 +73,7 @@ const Bounty: NextPage = ({bounty}:any) => {
         							<div className="middle row">
         								<div className="col f-col"></div>
         								<div className="col s-col">
-        									<p className="text">
-                                            {bounty.description}<a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
-        									</p>
+        									<p className="text">{/*{bounty.description}*/}Prueba</p>
         								</div>
         								<div className="col t-col"></div>
         							</div>
@@ -86,17 +82,17 @@ const Bounty: NextPage = ({bounty}:any) => {
         								<div className="col s-col">
         									<p className="text">Prize</p>
         									<p className="prize">
-        										${bounty.price} USD as a prize
+        										${/*{bounty.price}*/}100.0 USD as a prize
         									</p>
         								</div>
         								<div className="col s-col">
         									<p className="text">Live Until</p>
-        									<p className="text">{bounty.liveUntil}</p>
+        									<p className="text">{/*{bounty.liveUntil}*/}2022-12-16</p>
         								</div>
         								<div className="col f-col"></div>
         								<div className="col s-col">
         									<p className="text">Current applicants</p>
-        									<p className="text">{bounty.applicantNumber}</p>
+        									<p className="text">{/*{bounty.applicantNumber}*/}2</p>
         								</div>
         							</div>
         							<div className="middle bottom row">
