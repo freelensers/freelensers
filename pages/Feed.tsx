@@ -3,10 +3,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Script from 'next/script'
 
-import Navbar from '../components/Navbar.tsx'
+import Navbar from '../components/Navbar'
 //import Feed from './Feed.tsx'
-import Bounty from './Bounty.tsx'
-import Landing from './Landing.tsx'
+import Bounty from './Bounty'
+import Landing from './landing'
 import PostCard from '../components/PostCard'
 import BountyPost from '../components/BountyPost'
 
@@ -20,7 +20,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 // import the function from test.tsx
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { apolloClient } from './client/ApolloClient';
+import { apolloClient } from '../components/ApolloClient';
 import { gql } from '@apollo/client'
 import { piggyAbi, erc20Abi } from '../constants/abis'
 
@@ -390,7 +390,7 @@ export async function getStaticProps(){
   }
 
 
-const Feed: NextPage = ({post , bounties}) => {
+const Feed: NextPage = ({post , bounties} : any) => {
   console.log(bounties)
 
   const [provider, setProvider] = useState<ethers.providers.Web3Provider>()
@@ -519,7 +519,7 @@ const Feed: NextPage = ({post , bounties}) => {
     }
   }
 
-  const [clientWindowHeight, setClientWindowHeight] = useState("");
+  const [clientWindowHeight, setClientWindowHeight] = useState<number>(0);
 
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
@@ -541,12 +541,12 @@ const Feed: NextPage = ({post , bounties}) => {
   const fAccordion = () => {
     var toggler = document.getElementById("Active-Bounties-toggler");
     var elem = document.getElementById("Active-Bounties-content");
-    if (elem.classList.contains("show")) {
-        toggler.setAttribute("data-show", "false");
+    if (elem?.classList.contains("show")) {
+        toggler?.setAttribute("data-show", "false");
         elem.classList.remove("show");
     } else {
-        toggler.setAttribute("data-show", "true");
-        elem.classList.add("show");
+        toggler?.setAttribute("data-show", "true");
+        elem?.classList.add("show");
     }
   };
 
@@ -574,7 +574,7 @@ const Feed: NextPage = ({post , bounties}) => {
 						<>
 						{posts.map(inner => (
 						<>
-							{inner.search?.items?.map(Post => (
+							{inner.search?.items?.map((Post : any) => (
 							<>
 								<PostCard Post={Post}/>
 							</>
@@ -639,7 +639,7 @@ const Feed: NextPage = ({post , bounties}) => {
 									<h1 id="Active-Bounties-toggler" className="title" onClick={fAccordion} data-show="false">Active bounties<img src="assets/icons/arrow_down_icon.svg" className="icon" alt="Chevron icon" /></h1>
 								</div>
 								<div id="Active-Bounties-content" className="middle row posts collapse">
-                {bounties.map(bounty=>(
+                {bounties.map((bounty: any)=>(
         <>
         <BountyPost bounty ={bounty}/>
         </>

@@ -5,9 +5,9 @@ import Link from 'next/link'
 import landingcss from '../styles/landing.css'
 
 
-export default function Home() {
+
+const Landing: NextPage = () => {
     return (
-        
         <div>
             <LandingNavBar/>
             <section className="container landing-container">
@@ -17,8 +17,12 @@ export default function Home() {
                         <p className="normal-text">Find work opportunities through the Lens social media platform. Safe and secure for both parties.</p>
                         <div className="parent-button-container">
                             <div className="home-button-container">
-                            <a href="/Feed" className="GreenButton">Launch app</a>
-                            <a href="https://github.com"><button className="WhiteButton"> GitHub</button></a>
+                                <Link href="/Feed">
+                                    <a className="btn-type-2">Launch app</a>
+                                </Link>
+                                <Link href="https://github.com">
+                                    <a className="btn-type-3">GitHub</a>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -32,3 +36,5 @@ export default function Home() {
         
     )
 }
+
+export default Landing

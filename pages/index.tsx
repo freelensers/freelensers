@@ -3,12 +3,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Script from 'next/script'
 
-import Navbar from '../components/Navbar.tsx'
-import Feed from './Feed.tsx'
-import Bounty from './Bounty.tsx'
-import Landing from './Landing.tsx'
-import PopUp from '../components/PopUp_Create.tsx'
-import ViewBounties from './View_Bounties.tsx'
+import Navbar from '../components/Navbar'
+import Feed from './Feed'
+import Bounty from './Bounty'
+import Landing from './landing'
+import ViewBounties from './View_Bounties'
 
 import globals from '../styles/globals.css'
 import dashboardcss from '../styles/dashboard.css'
@@ -20,12 +19,9 @@ import 'bootstrap/dist/css/bootstrap.css'
 // import the function from test.tsx
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { apolloClient } from './client/ApolloClient';
+import { apolloClient } from '../components/ApolloClient';
 import { gql } from '@apollo/client'
 import { piggyAbi, erc20Abi } from '../constants/abis'
-
-import { useDataContext } from '../context/DataContext'
-
 
 
 // const router = useRouter()
@@ -389,9 +385,8 @@ export async function getStaticProps(){
   }
 }
 
-const Home: NextPage = ({post}) => {
+const Home: NextPage = ({post} : any) => {
 
-  const { createModalIsOpen } = useDataContext()
 
   const [posts, setdata] = useState([post]);
     console.log(post);
@@ -515,7 +510,7 @@ const Home: NextPage = ({post}) => {
     }
   }
 
-  const [clientWindowHeight, setClientWindowHeight] = useState("");
+  const [clientWindowHeight, setClientWindowHeight] = useState<number>(0)
 
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
@@ -554,8 +549,6 @@ const Home: NextPage = ({post}) => {
         {/*<Navbar />
         <ViewBounties />*/}
         {/*<Bounty />*/}
-
-        {/*{createModalIsOpen && <PopUp />}*/}
         {/*<Feed />*/}
         <Landing />
           <div>

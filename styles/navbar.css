@@ -1,5 +1,5 @@
 .ConnectButton {border: none; color: var(--white); background-color: var(--main-green); border-radius: 100px; padding: 0.5rem 0.9rem; }
-.BountyButton {border: none; color: #222222; background-color: var(--white); border-radius: 100px; padding: 0.5rem 0.9rem;}
+.BountyButton {border: none; color: var(--main-bg); background-color: var(--white); border-radius: 100px; padding: 0.5rem 0.9rem;}
 .nav-item-bounties{display: none;}
 /** Navbar **/
 nav.navbar { background: transparent; color: var(--white); font-size: var(--ts-nav); display: flex; justify-content: space-between; align-items: center; gap: 2rem; padding: 0.8rem 3.5rem; position: sticky; top: 0; left: 0; right: 0; border-bottom:1px solid #4F4F4F; z-index: 2; transition: 0.5s; transition-delay: 0.1s; }
@@ -9,11 +9,15 @@ nav .nav-items ul { padding: 0; margin: 0; list-style: none; display: flex; gap:
 nav .nav-items a { color: var(--white); text-decoration: none; transition: 0.5s; }
 nav .nav-items a:hover { color: var(--main-green); }
 
+nav .nav-link { color: var(--white); text-decoration: none; transition: 0.5s; }
+nav .nav-link:hover { color: var(--main-green); }
+
 nav .btn-type-2 { font-size: 1rem; }
+nav .btn-type-3 { font-size: 1rem; }
 
 
-nav .notif-bell {  }
-nav .notif-bell img { height: 1rem; width: auto; }
+nav .notif-bell { background: transparent; outline: none; border: 0; }
+nav .notif-bell img { height: 1.3rem; width: auto; filter: var(--white-filter); }
 
 
 /*Nav toggler*/
@@ -38,7 +42,7 @@ nav .account { z-index: 1; }
   .navbar.open { background-color: var(--prize-text); }
   nav .logo { order: 1; }
   nav .nav-items { order: 2; }
-  nav .nav-items ul { position: absolute; top: 0; left: 0; right: 0; padding: 1rem 2rem 1.75rem 1.5rem; margin: 4rem 0 0 0; list-style: none; display: flex; gap: 1rem; align-items: flex-end; flex-direction: column; background-color: var(--prize-text); transition: 0s; transform: translateY(-100vh); z-index: 1; }
+  nav .nav-items ul { position: absolute; top: 0; left: 0; right: 0; padding: 1rem 2rem 1.75rem 1.5rem; margin: 6.5rem 0 0 0; list-style: none; display: flex; gap: 1rem; align-items: flex-end; flex-direction: column; background-color: var(--prize-text); transition: 0s; transform: translateY(-100vh); z-index: 1; }
   nav.open .nav-items ul { transform: translateY(0); }
   .BountyButton{display:none}
   .nav-item-bounties{display: initial;}

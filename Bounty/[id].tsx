@@ -1,12 +1,39 @@
 import type { NextPage } from 'next'
 
 import Image from 'next/image'
-import Navbar from '../components/Navbar'
-import dashboardcss from '../styles/dashboard.css'
+import Navbar from '../../components/Navbar.tsx'
+import dashboardcss from '../../styles/dashboard.css'
 
 import 'bootstrap/dist/css/bootstrap.css'
 
-const Bounty: NextPage = () => {
+export const getStaticPaths = async () => {
+    const res = await fetch('https://freelensers.azurewebsites.net/api/GetBounties');
+    const datos = await res.json();
+
+    const paths = datos.bounties.map(bounty =>{
+    return {
+      params: { id: bounty.id.toString() }
+    }
+  })
+  return{
+    paths,
+    fallback:false
+  }
+
+  }
+
+  export const getStaticProps = async (context) => {
+    const id = context.params.id;
+    const respuesta = await fetch('https://freelensers.azurewebsites.net/api/GetBounty?id=' + id);
+    const data = await respuesta.json();
+  
+    return {
+      props: { bounty: data.bounties[0] }
+    }
+  }
+
+const Bounty: NextPage = ({bounty}) => {
+    console.log(bounty)
 	return (
 		<main>
         	<Navbar />
@@ -18,10 +45,10 @@ const Bounty: NextPage = () => {
         						<div className="container card-container">
         							<div className="top row">
         								<div className="col f-col">
-        									<img src="assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
+        								
         								</div>
         								<div className="col s-col">
-        									<h1 className="name">Stani Lens</h1>
+        									<h1 className="name">{bounty.owner}</h1>
         									<h2 className="username">@stani.lens</h2>
         								</div>
         								<div className="col t-col">
@@ -32,7 +59,7 @@ const Bounty: NextPage = () => {
         								<div className="col f-col"></div>
         								<div className="col s-col">
         									<p className="text">
-        										Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
+                                            {bounty.description}<a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
         									</p>
         								</div>
         								<div className="col t-col"></div>
@@ -42,17 +69,17 @@ const Bounty: NextPage = () => {
         								<div className="col s-col">
         									<p className="text">Prize</p>
         									<p className="prize">
-        										$1000 USD as a prize
+        										${bounty.price} USD as a prize
         									</p>
         								</div>
         								<div className="col s-col">
         									<p className="text">Live Until</p>
-        									<p className="text">9/10/2022</p>
+        									<p className="text">{bounty.liveUntil}</p>
         								</div>
         								<div className="col f-col"></div>
         								<div className="col s-col">
         									<p className="text">Current applicants</p>
-        									<p className="text">2/3</p>
+        									<p className="text">{bounty.applicantNumber}</p>
         								</div>
         							</div>
         							<div className="middle bottom row">
@@ -77,7 +104,7 @@ const Bounty: NextPage = () => {
         					<div className="cards profile">
         						<div className="container card-container">
         							<div className="header row">
-        								<img src="assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
+        								<img src="../assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
         								<h1 className="title">Iñigo Zepeda</h1>
         								<h2 className="username">@inigo.lens</h2>
         							</div>

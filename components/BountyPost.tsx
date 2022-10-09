@@ -1,12 +1,13 @@
-const BountyPost =({bounty})=>{
-    const formatAddress = (address) => {
+import Link from 'next/link'
+const BountyPost =({bounty}:any)=>{
+    const formatAddress = (address:any) => {
       if (address.length === 42) {
         return address.substring(0, 6) + "..." + address.substring(38);
       } else {
         return address;
       }
     }
-    const reduceAddress = (address) => {
+    const reduceAddress = (address:any) => {
         var f5 = address.substring(0, 5);
         var l4 = address.substring(address.length - 4);
         var result = f5 + "..." + l4;
@@ -35,9 +36,11 @@ return(
         </p>
     </div>
     <div className="col-6 text-end">
-        <a href="../Bounty" className="btn-type-1">
+    <Link href={'/Bounty/' + bounty.id} key={bounty.id}>
+        <button className="btn-type-1">
             View bounty
-        </a>
+        </button>
+        </Link>
     </div>
 </div>
 </div>

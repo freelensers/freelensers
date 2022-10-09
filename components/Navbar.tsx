@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { Web3Auth } from "@web3auth/web3auth";
 import { CHAIN_NAMESPACES, SafeEventEmitterProvider } from "@web3auth/base";
 import RPC from "../pages/Web3RPC";
+import PopUp from '../components/PopUp_Create'
+
 
 // Push
 import * as PushAPI from "@pushprotocol/restapi";
@@ -20,6 +22,9 @@ const clientId = "BDG5gmJwcwIaauNIQXvp403mBSVCF2Hw4jr5YYpZ7dbcAn5cQlo3z58cOzJRCN
 
 
 const Navbar = ()=>{
+
+  const { createModalIsOpen } = useDataContext()
+
 
     const [web3auth, setWeb3auth] = useState<Web3Auth | null>(null);
     const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
@@ -169,12 +174,12 @@ const Navbar = ()=>{
     const nav = () => {
       var nav = document.getElementsByTagName("nav")[0];
       var toggler = document.getElementById("nav-toggler");
-      if (toggler.classList.contains("open")) {
+      if (toggler?.classList.contains("open")) {
         nav.classList.remove("open");
         toggler.classList.remove("open");
       } else {
         nav.classList.add("open");
-        toggler.classList.add("open");
+        toggler?.classList.add("open");
       }
     }
 
@@ -221,6 +226,7 @@ const Navbar = ()=>{
                   <div className="bar3"></div>
               </a>
             </div>
+            {createModalIsOpen && <PopUp />}
         </nav>
     )
 }
