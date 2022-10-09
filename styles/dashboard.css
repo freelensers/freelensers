@@ -77,11 +77,11 @@ main section.dashboard-container .column .content .cards .card-container .post .
 main section.dashboard-container .column .content .cards .card-container .post .bottom .prize { font-size: .8rem; }
 
 
-main section.dashboard-container .column .content .cards .card-container .btn-type-1 { border: 1px solid var(--main-green); background: transparent; outline: none; border-radius: 5rem; color: var(--main-green); font-size: .8rem; line-height: 1; padding: .5rem 1rem; transition: 0.5s; }
-main section.dashboard-container .column .content .cards .card-container .btn-type-1:hover { background-color: var(--main-green); color: var(--white); }
+.btn-type-1 { border: 1px solid var(--main-green); background: transparent; outline: none; border-radius: 5rem; color: var(--main-green); font-size: .8rem; line-height: 1; padding: .5rem 1rem; transition: 0.5s; }
+.btn-type-1:hover { background-color: var(--main-green); color: var(--white); }
 
-main section.dashboard-container .column .content .cards .btn-type-2 { display: inline-block; width: unset; margin-left: auto; margin-right: auto; border: 1px solid var(--main-green); background: var(--main-green); outline: none; border-radius: 5rem; color: var(--white); font-size: .8rem; line-height: 1; padding: .5rem 1rem; transition: 0.5s; margin-top: 1.5rem; margin-bottom: 1rem; }
-main section.dashboard-container .column .content .cards .btn-type-2:hover { background-color: transparent; color: var(--main-green); }
+.btn-type-2 { display: inline-block; width: unset; margin-left: auto; margin-right: auto; border: 1px solid var(--main-green); background: var(--main-green); outline: none; border-radius: 5rem; color: var(--white); font-size: .8rem; line-height: 1; padding: .5rem 1rem; transition: 0.5s; margin-top: 1.5rem; margin-bottom: 1rem; }
+.btn-type-2:hover { background-color: transparent; color: var(--main-green); }
 
 
 
