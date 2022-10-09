@@ -51,7 +51,7 @@ const Home: NextPage = () => {
 
   const searchPostsQuery = `query Search {
     search(request: {
-      query: "hello",
+      query: "Aavegotchi",
       type: PUBLICATION,
       limit: 10
     }) {

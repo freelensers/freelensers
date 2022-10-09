@@ -28,7 +28,7 @@ import { useDataContext } from '../context/DataContext'
 // const router = useRouter()
 const searchPostsQuery = `query Search {
   search(request: {
-    query: "hello",
+    query: "Aavegotchi",
     type: PUBLICATION,
     limit: 10
   }) {
