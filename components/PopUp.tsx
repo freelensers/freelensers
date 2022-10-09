@@ -41,7 +41,7 @@ const PopUp = () => {
 									</div>
 								</div>
 								<div className="form row">
-									<button type="submit" className="pay submit-btn btn-type-2">Confirm</button>
+									<button type="submit" className="submit-btn btn-type-2">Confirm</button>
 								</div>
 							</div>
 						</form>
