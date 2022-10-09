@@ -1,12 +1,17 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Script from 'next/script'
+
 import Navbar from '../components/Navbar.tsx'
 import Feed from './Feed.tsx'
+import Bounty from './Bounty.tsx'
+import Landing from './Landing.tsx'
 
 import globals from '../styles/globals.css'
 import dashboardcss from '../styles/dashboard.css'
 import navbarcss from '../styles/navbar.css'
+import landingcss from '../styles/landing.css'
 import { useRouter } from 'next/router'
 
 import 'bootstrap/dist/css/bootstrap.css'
@@ -511,6 +516,8 @@ const Home: NextPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   });
 
+  // const [bootstrap, setBootstrap] = useState(null);
+
 
   return (
     <div>
@@ -521,7 +528,9 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Navbar />
-        <Feed />
+        <Bounty />
+        {/*<Feed />*/}
+        {/*<Landing />*/}
           <div>
             {/* Create button to call function from test.tsx */}
             <button onClick={connectWallet}>Connect Wallet</button>
@@ -535,21 +544,15 @@ const Home: NextPage = () => {
 
           </div>
       </main>
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{''}
-          <span>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-        <button onClick={getQueryPosts}></button>
-        {/* button to call getQueryPosts function */}
+      {/*<Script
+        id="bootstrap-js"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymus"
+        onLoad={() => {
+          setBootstrap({ bootstrap: window.Bootstrap('sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3') })
+        }}
+      />*/}
 
-      </footer>
     </div>
   )
 }
