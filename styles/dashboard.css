@@ -83,6 +83,9 @@ main section.dashboard-container .column .content .cards .card-container .post .
 .btn-type-2 { display: inline-block; width: unset!important; margin-left: auto; margin-right: auto; border: 1px solid var(--main-green); background: var(--main-green); outline: none; border-radius: 5rem; color: var(--white); font-size: .8rem; line-height: 1; padding: .5rem 1rem; transition: 0.5s; margin-top: 1.5rem!important; margin-bottom: 1rem; text-decoration: none; }
 .btn-type-2:hover { background-color: var(--prize-bg); color: var(--main-green); }
 
+.btn-type-3 { display: inline-block; width: unset!important; margin-left: auto; margin-right: auto; border: 1px solid var(--white); background: var(--white); outline: none; border-radius: 5rem; color: var(--); font-size: .8rem; line-height: 1; padding: .5rem 1rem; transition: 0.5s; margin-top: 1.5rem!important; margin-bottom: 1rem; text-decoration: none; }
+.btn-type-3:hover { background-color: var(--prize-bg); color: var(--main-green); }
+
 
 
 
