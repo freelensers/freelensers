@@ -22,7 +22,7 @@ const Navbar = ()=>{
 
     return(
         <nav className="navbar scroll">
-            <Link href="/landing">
+            <Link href="/">
                 <a className="navbar-brand">Freelensers</a>
             </Link>
             <div className="nav-items">
