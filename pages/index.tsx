@@ -26,7 +26,7 @@ import { piggyAbi, erc20Abi } from '../constants/abis'
 // const router = useRouter()
 const searchPostsQuery = `query Search {
   search(request: {
-    query: "hello",
+    query: "Aavegotchi",
     type: PUBLICATION,
     limit: 10
   }) {
