@@ -11,29 +11,30 @@ const PopUp = () => {
 	const [link, setLink] = useState('')
 	const [file, setfile] = useState('')
 
-	const uploadFiles = async() =>{
-		try{
-			await  fetch('',{
+	const uploadFiles = async () => {
+		try {
+			await fetch('https://freelensers.azurewebsites.net/api/CreateSubmission', {
 				method: 'POST',
-				headers:{
-					'Content-Type':'application/json'
+				headers: {
+					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
 					description: description,
-					link: link,
-					file: file,
-					owner: account	
+					link: link || file,
+					owner: "0xbC91222C7DB724F9aA99eFf7b493Ec37FF241341"
 				})
-			}).then(res => ()=>( console.log(res)))
-	
-		} catch(error){
+			}).then(res => () => (console.log(res)))
+
+		} catch (error) {
 			console.log(error)
 		}
 	}
+
+	const { createModalIsOpen, closeCreateModal } = useDataContext()
 	return (
 		<div className="darken">
 			<section className="popup">
-				{/*<button className="close"><img src="./icon/close.svg" alt="close button icon" /></button>*/}
+				<button className="close" onClick={closeCreateModal}><img src="../assets/icons/close.svg" alt="Close button" /></button>
 				<div className="container popup-container">
 					<div className="content popup-content">
 						<h1 className="title">Entry upload</h1>
@@ -48,13 +49,13 @@ const PopUp = () => {
 								<div className="form row">
 									<div className="form-col col-12">
 										<label htmlFor="link" className="form-label">Link</label>
-										<input id="link" className="form-control" type="text" placeholder="Share a link with your entry"  onChange={(e) => setLink(e.target.value)} />
+										<input id="link" className="form-control" type="text" placeholder="Share a link with your entry" onChange={(e) => setLink(e.target.value)} />
 									</div>
 								</div>
 								<div className="form row">
 									<div className="form-col col-12">
 										<label htmlFor="files" className="form-label">or</label>
-										<input id="file" className="form-control" type="file"  onChange={(e) => setfile(e.target.value)}/>
+										<input id="file" className="form-control" type="file" onChange={(e) => setfile(e.target.value)} />
 									</div>
 								</div>
 								<div className="form row">

@@ -6,7 +6,7 @@ import landingcss from '../styles/landing.css'
 
 
 
-const Landing: NextPage = () => {
+const Landing: any = () => {
     return (
         <div>
             <LandingNavBar/>

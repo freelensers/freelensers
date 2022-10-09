@@ -3,7 +3,8 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import Navbar from '../../components/Navbar'
 import dashboardcss from '..../styles/dashboard.css'
-
+import PopUp from '../../components/PopUp_Upload'
+import { useDataContext } from '../../context/DataContext'
 import 'bootstrap/dist/css/bootstrap.css'
 
 export const getStaticPaths = async () => {
@@ -47,6 +48,8 @@ export const getStaticPaths = async () => {
   }
 
 const Bounty: NextPage = ({bounty}:any) => {
+	const { createModalIsOpen } = useDataContext()
+	const { openCreateModal } = useDataContext()
     console.log(bounty)
 	return (
 		<main>
@@ -72,7 +75,9 @@ const Bounty: NextPage = ({bounty}:any) => {
         							<div className="middle row">
         								<div className="col f-col"></div>
         								<div className="col s-col">
-        									<p className="text">{bounty.description}</p>
+        									<p className="text">
+                                            {bounty.description}<a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
+        									</p>
         								</div>
         								<div className="col t-col"></div>
         							</div>
@@ -102,8 +107,8 @@ const Bounty: NextPage = ({bounty}:any) => {
         									</button>
         								</div>
         								<div className="col s-col text-end">
-        									<button className="btn-type-1">
-        										View bounty
+        									<button className="btn-type-1" onClick={openCreateModal}>
+        										Submmit
         									</button>
         								</div>
         							</div>
@@ -117,12 +122,12 @@ const Bounty: NextPage = ({bounty}:any) => {
         						<div className="container card-container">
         							<div className="header row">
         								<img src="../assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
-        								<h1 className="title">Lens User</h1>
-        								<h2 className="username">@user.lens</h2>
+        								<h1 className="title">Iñigo Zepeda</h1>
+        								<h2 className="username">@inigo.lens</h2>
         							</div>
         							<div className="middle row">
         								<p className="text">
-        									UI UX designer and software engineer living in Bogota
+        									UI UX designer and software engineer living in Mexico
         								</p>
         							</div>
         							<div className="bottom row">
@@ -142,6 +147,7 @@ const Bounty: NextPage = ({bounty}:any) => {
         			</div>
         		</div>
         	</section>
+			{createModalIsOpen && <PopUp />}
       	</main>
 	)
 }
