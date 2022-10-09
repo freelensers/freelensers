@@ -17,8 +17,8 @@ export default function Home() {
                         <p className="normal-text">Find work opportunities through the Lens social media platform. Safe and secure for both parties.</p>
                         <div className="parent-button-container">
                             <div className="home-button-container">
-                            <a href="/Feed" className="GreenButton">Launch app</a>
-                            <a href="https://github.com"><button className="WhiteButton"> GitHub</button></a>
+                            <Link href="/Feed" className="GreenButton">Launch app</Link>
+                            <Link href="https://github.com"><button className="WhiteButton"> GitHub</button></Link>
                             </div>
                         </div>
                     </div>

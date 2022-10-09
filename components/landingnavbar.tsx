@@ -6,7 +6,7 @@ const LandingNavBar = ()=> {
         <nav className="navbar">
             <Link href="/"><a className="navbar-brand">Freelensers</a></Link>
             <div className="nav-items">
-                <a href="/Feed" className="GreenButton"> Launch app</a>
+                <Link href="/Feed" className="GreenButton"> Launch app</Link>
             </div>
         </nav>
     </>
