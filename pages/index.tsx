@@ -551,13 +551,13 @@ const Home: NextPage = ({post}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Navbar />
-        <ViewBounties />
+        {/*<Navbar />
+        <ViewBounties />*/}
         {/*<Bounty />*/}
 
         {/*{createModalIsOpen && <PopUp />}*/}
         {/*<Feed />*/}
-        {/*<Landing />*/}
+        <Landing />
           <div>
             {/* Create button to call function from test.tsx */}
             <input type="text" value={ethAmount} onChange={(e) => setEthAmount(e.target.value)} />
