@@ -823,10 +823,6 @@ const Feed: NextPage = ({post}) => {
 		</section>
         {/*<Landing />*/}
           <div>
-            {/* Create button to call function from test.tsx */}
-            <button onClick={connectWallet}>Connect Wallet</button>
-            <button onClick={getMessage}>Get Message</button>
-            <button onClick={authenticate}>Authenticate</button>
             <input type="text" value={ethAmount} onChange={(e) => setEthAmount(e.target.value)} />
             <button onClick={depositEther}>Deposit Ether</button>
             <input type="text" value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value)} />
