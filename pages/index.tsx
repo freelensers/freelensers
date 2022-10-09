@@ -551,15 +551,15 @@ const Home: NextPage = ({post} : any) => {
         {/*<Bounty />*/}
         {/*<Feed />*/}
         <Landing />
-          <div>
-            {/* Create button to call function from test.tsx */}
+          {/*<div>
+            Create button to call function from test.tsx 
             <input type="text" value={ethAmount} onChange={(e) => setEthAmount(e.target.value)} />
             <button onClick={depositEther}>Deposit Ether</button>
             <input type="text" value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value)} />
             <input type="text" value={tokenAmount} onChange={(e) => setTokenAmount(e.target.value)} />      
             <button onClick={depositToken}>Deposit Token</button>
 
-          </div>
+          </div>*/}
       </main>
       {/*<Script
         id="bootstrap-js"

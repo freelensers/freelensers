@@ -150,11 +150,6 @@ const Navbar = ()=>{
         </button>
       );
 
-
-
-
-
-
     const { openCreateModal } = useDataContext()
 
     const router = useRouter()
@@ -183,16 +178,10 @@ const Navbar = ()=>{
                     <Link href='/Feed'>
                         Feed
                     </Link>
-                    <li className="nav-item-bounties">
-                        Create Bounties 
-                    </li>
                 </ul>
             </div>
             <div className="nav-items">
-              <button className="notif-bell">
-                <img src="../assets/icons/bell.svg" alt="Notification Bell" />
-              </button>
-              <button className="BountyButton" onClick={openCreateModal}>Create Bounty</button>
+              <button className="btn-type-3" onClick={openCreateModal}>Create Bounty</button>
               <div className="account">
                 <div className="grid">{provider ? loggedInView : unloggedInView}</div>
               </div>
