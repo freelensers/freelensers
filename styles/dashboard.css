@@ -95,6 +95,8 @@ section.popup .popup-container .popup-content form {  }
 section.popup .popup-container .popup-content form .form.row { margin-bottom: .5rem; }
 section.popup .popup-container .popup-content form label { font-size: .9rem; font-weight: 400; color: var(--white); line-height: 1; margin-bottom: 0.5rem; }
 section.popup .popup-container .popup-content form input { font-size: .9rem; font-weight: 400; color: var(--white); line-height: 1; margin-bottom: 0; background-color: var(--grey-bg-forms); border: 1px solid var(--stroke); outline: none; box-shadow: none; }
+section.popup .popup-container .popup-content form input[type="file"] { text-align: center; color: var(--grey-text); padding-top: 2rem; padding-bottom: 2rem; background: transparent; border: 1px dashed var(--stroke); }
+section.popup .popup-container .popup-content form input[type="file"]::-webkit-file-upload-button { display: none; }
 section.popup .popup-container .popup-content form .submit-btn { display: inline-block; width: auto; margin-top: 1.5rem; margin-bottom: 0; }
 /*section.popup .popup-container .popup-content form input::placeholder {
   color: red;
