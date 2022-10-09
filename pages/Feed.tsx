@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar.tsx'
 //import Feed from './Feed.tsx'
 import Bounty from './Bounty.tsx'
 import Landing from './Landing.tsx'
+import PostCard from '../components/PostCard'
 
 import globals from '../styles/globals.css'
 import dashboardcss from '../styles/dashboard.css'
@@ -24,32 +25,7 @@ import { piggyAbi, erc20Abi } from '../constants/abis'
 
 // const router = useRouter()
 
-const Feed: NextPage = () => {
-
-  const [provider, setProvider] = useState<ethers.providers.Web3Provider>()
-  const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
-  const [address, setAddress] = useState<string>()
-  const [signature, setSignature] = useState<string>()
-  const [ethAmount, setEthAmount] = useState<string>("0.001")
-  const [tokenAddress, setTokenAddress] = useState<string>("0x326C977E6efc84E512bB9C30f76E30c160eD06FB")
-  const [tokenAmount, setTokenAmount] = useState<string>("0.001")
-
-  const challengeQuery = `query($request: ChallengeRequest!) {
-    challenge(request: $request) {
-          text
-      }
-    }
-  `  
-
-  const authenticateQuery = `mutation($request: SignedAuthChallenge!) {
-    authenticate(request: $request) {
-          accessToken
-          refreshToken
-      }
-    }
-  `
-
-  const searchPostsQuery = `query Search {
+const searchPostsQuery = `query Search {
     search(request: {
       query: "hello",
       type: PUBLICATION,
@@ -398,6 +374,44 @@ const Feed: NextPage = () => {
   }
   `
 
+export async function getStaticProps(){
+    const response = await apolloClient.query({
+      query: gql(searchPostsQuery),
+    })
+    console.log(response.data)
+    const data = response.data;
+    return {
+      props: { post: data }
+    }
+  }
+
+const Feed: NextPage = ({post}) => {
+
+  const [provider, setProvider] = useState<ethers.providers.Web3Provider>()
+  const [signer, setSigner] = useState<ethers.providers.JsonRpcSigner>()
+  const [address, setAddress] = useState<string>()
+  const [signature, setSignature] = useState<string>()
+  const [ethAmount, setEthAmount] = useState<string>("0.001")
+  const [tokenAddress, setTokenAddress] = useState<string>("0x326C977E6efc84E512bB9C30f76E30c160eD06FB")
+  const [tokenAmount, setTokenAmount] = useState<string>("0.001")
+
+  const challengeQuery = `query($request: ChallengeRequest!) {
+    challenge(request: $request) {
+          text
+      }
+    }
+  `  
+
+  const authenticateQuery = `mutation($request: SignedAuthChallenge!) {
+    authenticate(request: $request) {
+          accessToken
+          refreshToken
+      }
+    }
+  `
+
+  
+
   useEffect(() => {
     if (typeof window.ethereum !== 'undefined' || (typeof window.web3 !== 'undefined')) {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -530,6 +544,8 @@ const Feed: NextPage = () => {
     }
   };
 
+  const [posts, setdata] = useState([post]);
+    console.log(post);
 
   return (
     <div>
@@ -549,8 +565,20 @@ const Feed: NextPage = () => {
 						
 					</div>
 					<div className="content">
+						<>
+						{posts.map(inner => (
+						<>
+							{inner.search?.items?.map(Post => (
+							<>
+								<PostCard Post={Post}/>
+							</>
+							))}
+						</>
+						))}
 						
-						<div className="cards">
+
+						</>
+						{/* <div className="cards">
 							<div className="container card-container">
 								<div className="top row">
 									<div className="col f-col">
@@ -594,277 +622,7 @@ const Feed: NextPage = () => {
 									</div>
 								</div>
 							</div>
-						</div>
-						<div className="cards">
-							<div className="container card-container">
-								<div className="top row">
-									<div className="col f-col">
-										<img src="assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
-									</div>
-									<div className="col s-col">
-										<h1 className="name">Stani Lens</h1>
-										<h2 className="username">@stani.lens</h2>
-									</div>
-									<div className="col t-col">
-										<p className="timestamp">2 hours ago</p>
-									</div>
-								</div>
-								<div className="middle row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<p className="text">
-											Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
-										</p>
-									</div>
-									<div className="col t-col"></div>
-								</div>
-								<div className="bottom row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<a className="icon">
-											<img src="assets/icons/comment_icon.svg" alt="Comment icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/like_icon.svg" alt="Like icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/rt_icon.svg" alt="Re-Tweet icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/save_icon.svg" alt="Save icon" />
-										</a>
-									</div>
-									<div className="col t-col">
-										<a className="text icon"><img src="assets/icons/copy_icon.svg" alt="Copy icon" />Copy</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="cards">
-							<div className="container card-container">
-								<div className="top row">
-									<div className="col f-col">
-										<img src="assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
-									</div>
-									<div className="col s-col">
-										<h1 className="name">Stani Lens</h1>
-										<h2 className="username">@stani.lens</h2>
-									</div>
-									<div className="col t-col">
-										<p className="timestamp">2 hours ago</p>
-									</div>
-								</div>
-								<div className="middle row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<p className="text">
-											Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
-										</p>
-									</div>
-									<div className="col t-col"></div>
-								</div>
-								<div className="bottom row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<a className="icon">
-											<img src="assets/icons/comment_icon.svg" alt="Comment icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/like_icon.svg" alt="Like icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/rt_icon.svg" alt="Re-Tweet icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/save_icon.svg" alt="Save icon" />
-										</a>
-									</div>
-									<div className="col t-col">
-										<a className="text icon"><img src="assets/icons/copy_icon.svg" alt="Copy icon" />Copy</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="cards">
-							<div className="container card-container">
-								<div className="top row">
-									<div className="col f-col">
-										<img src="assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
-									</div>
-									<div className="col s-col">
-										<h1 className="name">Stani Lens</h1>
-										<h2 className="username">@stani.lens</h2>
-									</div>
-									<div className="col t-col">
-										<p className="timestamp">2 hours ago</p>
-									</div>
-								</div>
-								<div className="middle row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<p className="text">
-											Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
-										</p>
-									</div>
-									<div className="col t-col"></div>
-								</div>
-								<div className="bottom row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<a className="icon">
-											<img src="assets/icons/comment_icon.svg" alt="Comment icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/like_icon.svg" alt="Like icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/rt_icon.svg" alt="Re-Tweet icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/save_icon.svg" alt="Save icon" />
-										</a>
-									</div>
-									<div className="col t-col">
-										<a className="text icon"><img src="assets/icons/copy_icon.svg" alt="Copy icon" />Copy</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="cards">
-							<div className="container card-container">
-								<div className="top row">
-									<div className="col f-col">
-										<img src="assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
-									</div>
-									<div className="col s-col">
-										<h1 className="name">Stani Lens</h1>
-										<h2 className="username">@stani.lens</h2>
-									</div>
-									<div className="col t-col">
-										<p className="timestamp">2 hours ago</p>
-									</div>
-								</div>
-								<div className="middle row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<p className="text">
-											Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
-										</p>
-									</div>
-									<div className="col t-col"></div>
-								</div>
-								<div className="bottom row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<a className="icon">
-											<img src="assets/icons/comment_icon.svg" alt="Comment icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/like_icon.svg" alt="Like icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/rt_icon.svg" alt="Re-Tweet icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/save_icon.svg" alt="Save icon" />
-										</a>
-									</div>
-									<div className="col t-col">
-										<a className="text icon"><img src="assets/icons/copy_icon.svg" alt="Copy icon" />Copy</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="cards">
-							<div className="container card-container">
-								<div className="top row">
-									<div className="col f-col">
-										<img src="assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
-									</div>
-									<div className="col s-col">
-										<h1 className="name">Stani Lens</h1>
-										<h2 className="username">@stani.lens</h2>
-									</div>
-									<div className="col t-col">
-										<p className="timestamp">2 hours ago</p>
-									</div>
-								</div>
-								<div className="middle row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<p className="text">
-											Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
-										</p>
-									</div>
-									<div className="col t-col"></div>
-								</div>
-								<div className="bottom row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<a className="icon">
-											<img src="assets/icons/comment_icon.svg" alt="Comment icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/like_icon.svg" alt="Like icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/rt_icon.svg" alt="Re-Tweet icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/save_icon.svg" alt="Save icon" />
-										</a>
-									</div>
-									<div className="col t-col">
-										<a className="text icon"><img src="assets/icons/copy_icon.svg" alt="Copy icon" />Copy</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="cards">
-							<div className="container card-container">
-								<div className="top row">
-									<div className="col f-col">
-										<img src="assets/img/pp-placeholder.png" className="pp" alt="Profile Picture" />
-									</div>
-									<div className="col s-col">
-										<h1 className="name">Stani Lens</h1>
-										<h2 className="username">@stani.lens</h2>
-									</div>
-									<div className="col t-col">
-										<p className="timestamp">2 hours ago</p>
-									</div>
-								</div>
-								<div className="middle row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<p className="text">
-											Hey! I just published a new bounty. Feel free to check it out here. <a className="link">https://lensty.xyz/bounty/fui2389fhsn</a>
-										</p>
-									</div>
-									<div className="col t-col"></div>
-								</div>
-								<div className="bottom row">
-									<div className="col f-col"></div>
-									<div className="col s-col">
-										<a className="icon">
-											<img src="assets/icons/comment_icon.svg" alt="Comment icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/like_icon.svg" alt="Like icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/rt_icon.svg" alt="Re-Tweet icon" />
-										</a>
-										<a className="icon">
-											<img src="assets/icons/save_icon.svg" alt="Save icon" />
-										</a>
-									</div>
-									<div className="col t-col">
-										<a className="text icon"><img src="assets/icons/copy_icon.svg" alt="Copy icon" />Copy</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 				<div className="column right-col">
